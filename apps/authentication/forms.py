@@ -1,11 +1,20 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+# from django.contrib.auth.models import User
+from apps.users.models import User
+from django.contrib.auth.models import Group
+
+
+
+
+class UserChangeForm(UserChangeForm):
+    groups = forms.ModelChoiceField(queryset=Group.objects.all())
+
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
 
 
 class LoginForm(forms.Form):
@@ -25,7 +34,9 @@ class LoginForm(forms.Form):
         ))
 
 
+
 class SignUpForm(UserCreationForm):
+
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -57,4 +68,4 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'groups')

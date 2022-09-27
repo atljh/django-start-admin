@@ -29,3 +29,15 @@ apps/static/assets/node_modules
 apps/static/assets/yarn.lock
 apps/static/assets/.temp
 
+apps/home/migrations/*
+
+
+.env
+migrations
+.idea
+features
+__pycache__/
+*/__pycache__/
+*.py[cod]
+.pyc
+main-templates
