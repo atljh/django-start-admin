@@ -1,10 +1,13 @@
-from django.shortcuts import render
+import os
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import User
+from .forms import UserChangeForm, Image
 from apps.home.models import Modul
 from django.contrib.auth.models import Group
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.dispatch import receiver    
+from django.dispatch import receiver
+from django.contrib import messages
 
 
 @receiver(user_logged_in)
@@ -59,8 +62,24 @@ def logs(request):
 
 @login_required(login_url="/login/")
 def profile(request):
-    user = request.user
-    context = {
-        'user': user
-    }
-    return render(request, 'users/profile.html', context=context)
+    if request.method == "POST":
+        user = User.objects.get(id = request.user.id)
+        if len(request.FILES) != 0:
+            user.profile_image = request.FILES['profile_image']
+        user.username = request.POST.get('username', user.username)
+        user.email = request.POST.get('email', user.email)
+        user.save()
+        return redirect('/')
+    else:
+        
+        user = request.user
+        print(request.user.groups.first().access_level)
+        groups = Group.objects.all()
+        form = UserChangeForm()
+
+        context = {
+            'groups': groups,
+            'user': user,
+            'form': form,
+        }
+        return render(request, 'users/profile.html', context=context)

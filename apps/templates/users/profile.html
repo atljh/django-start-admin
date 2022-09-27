@@ -20,12 +20,13 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Аватар</h4>
-                <img class="card-image rounded-10" width="158" height="208" src="/{{ user.profile_image }}" alt="Card image cap">
-                <form class="forms-sample">
+                <img class="rounded mx-auto d-block" style="width:300px;height:auto;" src="/{{ user.profile_image }}" alt="Card image cap">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
                     <div class="form-group">                      
-                        <input type="file" name="img[]" class="file-upload-default">
+                        <input type="file" name="profile_image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                          <input type="text"  class="form-control file-upload-info" disabled="" placeholder="Upload Image">
                           <span class="input-group-append">
                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                           </span>
@@ -40,14 +41,15 @@
           <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form class="forms-sample">
+                <form class="forms-sample" method="POST">
+                  {% csrf_token %}
                   <div class="form-group">
                     <label for="exampleInputUsername1">Username</label>
-                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                    <input type="text" class="form-control" id="exampleInputUsername1" name="username" value="{{ user.username }}" placeholder="Username">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="{{ user.email }}" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
@@ -57,18 +59,17 @@
                     <label for="exampleInputConfirmPassword1">Confirm Password</label>
                     <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
                   </div>
+                    {% if user.groups.first.access_level == 4 %}
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      Dropdown
+                      {{ user.groups.first }}
                     </button>
                     <div class="dropdown-menu hidden" aria-labelledby="dropdownMenuButton1">
-                      <h6 class="dropdown-header">Settings</h6>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Separated link</a>
+                      {% for group in groups %}
+                      <div class="dropdown-item">{{ group.name }}</div>
+                      {% endfor %}
                     </div>
-                  <button type="button" class="btn btn-primary">Delete</button>
+                    <button type="button" class="btn btn-primary">Delete</button>
+                    {% endif %}
                   <button type="submit" class="btn btn-primary me-2">Submit</button>
                   <button class="btn btn-light">Cancel</button>
                 </form>
