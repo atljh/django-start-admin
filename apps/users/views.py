@@ -7,7 +7,6 @@ from apps.home.models import Modul
 from django.contrib.auth.models import Group
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
-from django.contrib import messages
 
 
 @receiver(user_logged_in)
@@ -26,9 +25,6 @@ def is_moderator(user):
 
 def is_administrator(user):
     return user.groups.filter(name='Administrator').exists()
-
-def is_moderator(user):
-    return user.groups.filter(name='Client').exists()
 
 
 @login_required(login_url="/login/")
@@ -69,17 +65,45 @@ def profile(request):
         user.username = request.POST.get('username', user.username)
         user.email = request.POST.get('email', user.email)
         user.save()
+
         return redirect('/')
     else:
         
         user = request.user
-        print(request.user.groups.first().access_level)
         groups = Group.objects.all()
         form = UserChangeForm()
 
         context = {
             'groups': groups,
-            'user': user,
+            'user_obj': user,
             'form': form,
         }
         return render(request, 'users/profile.html', context=context)
+
+
+@login_required(login_url="/login/")
+def user(request, user_id):
+        if not request.user.groups.first().access_level >= 3:
+            return redirect('/')
+        if request.method == "POST":
+            user = User.objects.get(id = user_id)
+            if len(request.FILES) != 0:
+                user.profile_image = request.FILES['profile_image']
+            if request.POST.get('group'):
+                group = Group.objects.get(name=request.POST.get('group'))
+                user.groups.clear()
+                user.groups.add(group)
+            user.username = request.POST.get('username', user.username)
+            user.email = request.POST.get('email', user.email)
+            user.save()
+
+            return redirect('/users/')
+        else:
+            user_obj = User.objects.get(id=user_id)
+            groups = Group.objects.all()
+            context = {
+                'groups': groups,
+                'user_obj': user_obj,
+            }
+            return render(request, 'users/profile.html', context=context)
+

@@ -33,14 +33,22 @@
                 <tbody>
                   {% for user in users %}
                   <tr>
-                    <td>{{ user.username }}</td>
+                    <td><a href="/user/{{ user.id }}/" class="row-link">{{ user.username }}</a></td>
                     <td>{{ user.email }}</td>
                     {% if user.is_online == False %}
                     <td class="text-danger">Offline</td>
                     {% else %}
                     <td class="text-success">Online</td>
                     {% endif %}
-                    <td><label class="badge badge-danger">{{ user.groups.first }}</label></td>
+                    {% if user.groups.first.name == 'Administrator' %}
+                    <td><label class="badge badge-danger">{{ user.groups.first.name }}</label></td>
+                    {% elif user.groups.first.name == 'Moderator' %}
+                    <td><label class="badge badge-warning">{{ user.groups.first.name }}</label></td>
+                    {% elif user.groups.first.name == 'Client' %}
+                    <td><label class="badge badge-info">{{ user.groups.first.name }}</label></td>
+                    {% else %}
+                    <td><label class="badge badge-success">{{ user.groups.first.name }}</label></td>
+                    {% endif %}
                   </tr>
                   {% endfor %}
                 </tbody>
