@@ -4,8 +4,7 @@ from django.contrib.auth.models import Group
 
 
 class User(AbstractUser):
-    profile_image = models.ImageField(upload_to='apps/static/assets/images/profile', null=True)
-    bio = models.TextField(max_length=500, blank=True)    
+    profile_image = models.ImageField(upload_to='apps/static/assets/images/profile', null=True, blank=True)
     is_online = models.BooleanField(default=False)
 
 
