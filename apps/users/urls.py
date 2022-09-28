@@ -8,6 +8,8 @@ urlpatterns = [
 
     path('users/', views.users_observe, name='users'),
     path('users-control/', views.users_control, name='users-control'),
+    path('users-control/change_access/', views.change_modul_accces, name='change-access'),
+
     path('logs/', views.logs, name='logs'),
     path('profile/', views.profile, name='profile'),
     path('user/<int:user_id>/', views.user, name='user'),

@@ -6,6 +6,7 @@
 {% block css_plugins %}
 
   <link rel="stylesheet" href="{{ ASSETS_ROOT }}/js/select.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 {% endblock css_plugins %}
 
@@ -21,6 +22,7 @@
             <h4 class="card-title">Управление доступом</h4>
             <div class="table-responsive">
               <table class="table">
+
                 <thead>
                   <tr>
                     <th>Group</th>
@@ -28,70 +30,63 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for modul in moduls %}
                   <tr>
-                    <td>Dashboard</td>
+                    <form method="post">
+                    {% csrf_token %}
+                    <td class="modul">{{  modul.name }}</td>
                     <td>
-                        <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                            <div class="dropdown-menu hidden" aria-labelledby="dropdownMenuButton1">
-                              {% for group in groups %}
-                                <a class="dropdown-item" href="#">{{ group.name }}</a>
-                              {% endfor %}
-                            </div>
-                        </div>
+                    <!-- <div class="form-group" style="padding-right: 759px; margin-left: 30px; margin-bottom: -1px;"> -->
+                    <div class="form-group" id="{{ modul.name }}">
+                      <select class="form-control select-group" name="group">
+                        {% for group in groups %}
+                          {% if group.access_level == modul.access_level %}
+                          <option selected>{{ group.name }}</option>
+                          {% else %}
+                          <option >{{ group.name }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                      </div>
                     </td>
-
+                  </form>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
-                  <tr>
-                    <td>Users</td>
-                    <td>
-                        <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                            <div class="dropdown-menu hidden" aria-labelledby="dropdownMenuButton1">
-                              {% for group in groups %}
-                              <a class="dropdown-item" href="#">{{ group.name }}</a>
-                              {% endfor %}
-                            </div>
-                        </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <td>Calendar</td>
-                    <td>
-                        <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                            <div class="dropdown-menu hidden" aria-labelledby="dropdownMenuButton1">
-                              {% for group in groups %}
-                                <a class="dropdown-item" href="#">{{ group.name }}</a>
-                              {% endfor %}
-                            </div>
-                        </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <td>Charts</td>
-                    <td>
-                        <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Dropdown
-                        </button>
-                            <div class="dropdown-menu hidden" aria-labelledby="dropdownMenuButton1">
-                              {% for group in groups %}
-                                <a class="dropdown-item" href="#">{{ group.name }}</a>
-                              {% endfor %}
-                            </div>
-                        </div>
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
+                <script type="text/javascript">
+                  $('.select-group').change(function () {
+                    var modul = $(this).parents('.form-group').attr('id');
+                    var group = $(this).find("option:selected").val();
+                    var csrftoken = $( "input[name='csrfmiddlewaretoken']" ).val();
+ 
+
+                      $.ajax({
+                        data: {
+                            'group': group,
+                            'modul': modul,
+                            'csrfmiddlewaretoken': csrftoken,
+                            },
+                        type: "POST",
+                        url: "/users-control/change_access/",
+
+                        success: function (response) {
+                            if (response.response) {
+                            }
+                            else {
+                                console.log(response.error);
+                            }
+                        },
+                        error: function(){
+                            console.log("Error");
+                        }
+                    })
+                });
+              </script>
               </table>
             </div>
           </div>
@@ -112,7 +107,7 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="{{ ASSETS_ROOT }}/js/dashboard.js"></script>
   <script src="{{ ASSETS_ROOT }}/js/Chart.roundedBarCharts.js"></script>
 

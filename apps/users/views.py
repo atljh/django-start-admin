@@ -7,6 +7,7 @@ from apps.home.models import Modul
 from django.contrib.auth.models import Group
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
+from django.http import JsonResponse
 
 
 @receiver(user_logged_in)
@@ -39,15 +40,31 @@ def users_observe(request):
 
 @login_required(login_url="/login/")
 def users_control(request):
-    groups = Group.objects.all()
-    moduls = Modul.objects.all()
 
-    context = {
-        'groups': groups,
-        'moduls': moduls
+    if request.method == 'POST':
+        group = request.POST.get('group')
+        print(request.POST)
+        return redirect('/users-control/')
 
-    }
-    return render(request, 'users/users-control.html', context=context)
+    else:
+        groups = Group.objects.all()
+        moduls = Modul.objects.all()
+
+        context = {
+            'groups': groups,
+            'moduls': moduls
+
+        }
+        return render(request, 'users/users-control.html', context=context)
+
+
+@login_required(login_url="/login/")
+def change_modul_accces(request):
+    group_obj = Group.objects.get(name=request.POST.get('group'))
+    modul_obj = Modul.objects.get(name=request.POST.get('modul'))
+    modul_obj.access_level = group_obj.access_level
+    modul_obj.save()
+    return JsonResponse({'response': 'success'})
 
 
 @login_required(login_url="/login/")
