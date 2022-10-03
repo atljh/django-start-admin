@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path
 from apps.users import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -6,9 +6,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
-    path('users/', views.users_observe, name='users'),
-    path('users-control/', views.users_control, name='users-control'),
-    path('users-control/change_access/', views.change_module_accces, name='change-access'),
+    path('users/', views.users, name='users'),
+    path('modules/', views.modules, name='modules'),
+    path('modules/change_access/', views.change_module_accces, name='modules-change-access'),
     path('users/delete_user/', views.delete_user, name='delete-user'),
 
     path('logs/', views.logs, name='logs'),
@@ -16,6 +16,7 @@ urlpatterns = [
     path('user/<int:user_id>/', views.user, name='user'),
 
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

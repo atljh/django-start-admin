@@ -63,16 +63,15 @@
                     var module = $(this).parents('.form-group').attr('id');
                     var group = $(this).find("option:selected").val();
                     var csrftoken = $( "input[name='csrfmiddlewaretoken']" ).val();
- 
 
-                      $.ajax({
+                    $.ajax({
                         data: {
-                            'group': group,
                             'module': module,
+                            'group': group,
                             'csrfmiddlewaretoken': csrftoken,
                             },
                         type: "POST",
-                        url: "/users-control/change_access/",
+                        url: "/modules/change_access/",
 
                         success: function (response) {
                             if (response.response) {
