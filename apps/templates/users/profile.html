@@ -20,7 +20,7 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Аватар</h4>
-                <img class="rounded mx-auto d-block" style="width:300px;height:auto;" src="/{{ user_obj.profile_image }}" alt="Card image cap">
+                <img class="rounded mx-auto d-block" style="width:300px;height:auto;" src="/{{user_obj.profile_image }}" alt="Card image cap">
                 <form class="forms-sample" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                     <div class="form-group">                      
@@ -67,7 +67,7 @@
                   </h6>
                     {% if user.groups.first.access_level == 4 %}
                     <div class="col-sm-3 mb-3">
-                      <select class="form-control" name="group" id="group">
+                      <select class="form-control select-group" name="group" id="{{ user_obj.id }}">
                         {% for group in groups %}
                          {% if group == user_obj.groups.first %}
                          <option selected>{{ group.name }}</option>
@@ -82,52 +82,11 @@
                   <button type="submit" class="btn btn-primary me-2">Submit</button>
                   <a href="/" class="btn btn-secondary text-dark me-0"><i></i> Cancel</a>
                 </form>
-                <!-- <form class="forms-sample" method="POST">
-                  {% csrf_token %}
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">Username</label><br>
-                    {{ form.username}}
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label><br>
-                    {{ form.email}}
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password1" class="form-c ontrol" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                    <input type="password" name="password2" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                  </div>
-                  <h6 class="fw-light">
-                    {% if msg %}
-                        {{ msg | safe }}
-                    {% else %}
-                    {% endif %} 
-                </h6>
-                    {% if user.groups.first.access_level == 4 %}
-                    <div class="col-sm-3 mb-3">
-                      <select class="form-control" name="group" id="group">
-                        {% for group in groups %}
-                         {% if group == user_obj.groups.first %}
-                          <option selected>{{ group.name }}</option>
-                          {% else %}
-                          <option>{{ group.name }}</option>
-                          {% endif %}
-                        {% endfor %}
-                      </select>
-                    </div>
-                    {% endif %}
-                  <button type="submit" class="btn btn-primary me-2">Submit</button>
-                  <button type="button" class="btn btn-primary delete-user" id="{{ user_obj.id }}">Delete</button>
-                  <a href="/" class="btn btn-secondary text-dark me-0"><i></i> Cansel</a>
-                </form> -->
                 <script type="text/javascript">
                   $('.delete-user').click(function () {
                     var user_id = $(this).attr('id');
                     var csrftoken = $( "input[name='csrfmiddlewaretoken']" ).val();
- 
+                    
                       $.ajax({
                         data: {
                             'user_id': user_id,
@@ -150,6 +109,34 @@
                     })
                 });
                 </script>
+                    <script type="text/javascript">
+                      $('.select-group').change(function () {
+                        var user_id = $(this).attr('id');
+                        var group = $(this).find("option:selected").val();
+                        var csrftoken = $( "input[name='csrfmiddlewaretoken']" ).val();
+                        console.log(user_id);
+                        $.ajax({
+                            data: {
+                                'user_id': user_id,
+                                'group': group,
+                                'csrfmiddlewaretoken': csrftoken,
+                                },
+                            type: "POST",
+                            url: "/users/change_user_group/",
+
+                            success: function (response) {
+                                if (response.response) {
+                                }
+                                else {
+                                    console.log(response.error);
+                                }
+                            },
+                            error: function(){
+                                console.log("Error");
+                            }
+                        })
+                    });
+                  </script>
               </div>
             </div>
           </div>

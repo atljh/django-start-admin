@@ -15,22 +15,25 @@ def module_access(request, module: str) -> bool:
 
 
 @login_required(login_url="/login/")
-def index(request):
+def dashboard(request):
     if not module_access(request, 'Dashboard'):
         return redirect('/login/')
-    context = {'segment': 'index'}
-    html_template = loader.get_template('home/index.html')
-    return HttpResponse(html_template.render(context, request))
+    return render(request, 'modules/calendar.html', context=context)
+
 
 
 @login_required(login_url="/login/")
 def calendar(request):
+    if not module_access(request, 'Calendar'):
+        return redirect('/login/')
     context = {}
     return render(request, 'modules/calendar.html', context=context)
 
 
 @login_required(login_url="/login/")
 def charts(request):
+    if not module_access(request, 'Charts'):
+        return redirect('/login/')
     context = {}
     return render(request, 'modules/charts.html', context=context)
 

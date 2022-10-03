@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS Plugins goes HERE  -->
+{% block css_plugins %}
+
+  <link rel="stylesheet" href="{{ ASSETS_ROOT }}/js/select.dataTables.min.css">
+
+{% endblock css_plugins %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Пользователи</h4>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Emal</th>
+                    <th>Status</th>
+                    <th>Group</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                  <tr>
+                    <td><a href="/user/{{ user.id }}/" class="row-link">{{ user.username }}</a></td>
+                    <td>{{ user.email }}</td>
+                    {% if user.is_online == False %}
+                    <td class="text-danger">Offline</td>
+                    {% else %}
+                    <td class="text-success">Online</td>
+                    {% endif %}
+                    {% if user.groups.first.name == 'Administrator' %}
+                    <td><label class="badge badge-danger">{{ user.groups.first.name }}</label></td>
+                    {% elif user.groups.first.name == 'Moderator' %}
+                    <td><label class="badge badge-warning">{{ user.groups.first.name }}</label></td>
+                    {% elif user.groups.first.name == 'Client' %}
+                    <td><label class="badge badge-info">{{ user.groups.first.name }}</label></td>
+                    {% else %}
+                    <td><label class="badge badge-success">{{ user.groups.first.name }}</label></td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="btn btn-primary">Создать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS Plugins goes HERE  -->
+{% block js_plugins %}
+
+  <script src="{{ ASSETS_ROOT }}/vendors/chart.js/Chart.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/vendors/progressbar.js/progressbar.min.js"></script>
+
+{% endblock js_plugins %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script src="{{ ASSETS_ROOT }}/js/dashboard.js"></script>
+  <script src="{{ ASSETS_ROOT }}/js/Chart.roundedBarCharts.js"></script>
+
+{% endblock javascripts %}

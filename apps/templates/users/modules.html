@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS Plugins goes HERE  -->
+{% block css_plugins %}
+
+  <link rel="stylesheet" href="{{ ASSETS_ROOT }}/js/select.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+{% endblock css_plugins %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="content-wrapper">
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Управление доступом</h4>
+            <div class="table-responsive">
+              <table class="table">
+
+                <thead>
+                  <tr>
+                    <th>Modules</th>
+                    <th>Access level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for module in modules %}
+                  <tr>
+                    <form method="post">
+                    {% csrf_token %}
+                    <td class="module">{{  module.name }}</td>
+                    <td>
+                    <!-- <div class="form-group" style="padding-right: 759px; margin-left: 30px; margin-bottom: -1px;"> -->
+                    <div class="form-group" id="{{ module.name }}">
+                      <select class="form-control select-group" name="group">
+                        {% for group in groups %}
+                          {% if group.access_level == module.access_level %}
+                          <option selected>{{ group.name }}</option>
+                          {% else %}
+                          <option >{{ group.name }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                      </div>
+                    </td>
+                  </form>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <script type="text/javascript">
+                  $('.select-group').change(function () {
+                    var module = $(this).parents('.form-group').attr('id');
+                    var group = $(this).find("option:selected").val();
+                    var csrftoken = $( "input[name='csrfmiddlewaretoken']" ).val();
+
+                    $.ajax({
+                        data: {
+                            'module': module,
+                            'group': group,
+                            'csrfmiddlewaretoken': csrftoken,
+                            },
+                        type: "POST",
+                        url: "/modules/change_access/",
+
+                        success: function (response) {
+                            if (response.response) {
+                            }
+                            else {
+                                console.log(response.error);
+                            }
+                        },
+                        error: function(){
+                            console.log("Error");
+                        }
+                    })
+                });
+              </script>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS Plugins goes HERE  -->
+{% block js_plugins %}
+
+  <script src="{{ ASSETS_ROOT }}/vendors/chart.js/Chart.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/vendors/progressbar.js/progressbar.min.js"></script>
+
+{% endblock js_plugins %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/js/dashboard.js"></script>
+  <script src="{{ ASSETS_ROOT }}/js/Chart.roundedBarCharts.js"></script>
+
+{% endblock javascripts %}

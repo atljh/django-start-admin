@@ -29,13 +29,13 @@ def got_offline(sender, user, request, **kwargs):
 def users(request):
     if not module_access(request, 'Users'):
         return redirect('/')
-    users = User.objects.all()
 
+    users = User.objects.all().order_by('-date_joined')
     context = {
         'users': users,
     }
 
-    return render(request, 'users/users-observe.html', context=context)
+    return render(request, 'users/users.html', context=context)
 
 
 @login_required(login_url="/login/")
@@ -45,13 +45,12 @@ def modules(request):
     else:
         groups = Group.objects.all()
         modules = Module.objects.all().order_by('-id')
-
         context = {
             'groups': groups,
             'modules': modules
 
         }
-        return render(request, 'users/users-control.html', context=context)
+        return render(request, 'users/modules.html', context=context)
 
 
 @login_required(login_url="/login/")
@@ -63,24 +62,23 @@ def change_module_accces(request):
         module_obj = Module.objects.get(name=request.POST.get('module'))
         module_obj.access_level = group_obj.access_level
         module_obj.save()
-        print(module_obj.name, group_obj.name)
     except Exception as exc:
         return JsonResponse({'error': f'{exc}'}, status=500)
     return JsonResponse({'response': 'success'})
 
 
 @login_required(login_url="/login/")
-def change_user_groups(request):
+def change_user_group(request):
     user_id  = request.POST.get('user_id')
     group = request.POST.get('group')
     try:
-        user_obj = User.objects.get(id=user_id)
+        user_obj = get_object_or_404(User, id=user_id)
         user_obj.groups.clear()
         user_obj.groups.add(Group.objects.get(name=group))
         user_obj.save()
     except Exception as exc:
         return JsonResponse({'error': f'{exc}'}, status=500)
-    return JsonResponse({'response': 'success'}, status=200)
+    return JsonResponse({'response': f'User {user_obj.username} is now {group}'}, status=200)
 
 
 @login_required(login_url="/login/")
@@ -107,37 +105,46 @@ def profile(request):
     if request.method == "POST":
         msg = None
         user = User.objects.get(id = request.user.id)
+        groups = Group.objects.all().order_by('-access_level')
+
         if len(request.FILES) != 0:
             user.profile_image = request.FILES['profile_image']
         raw_password = request.POST.get("password1")
-        # if len(raw_password) != 0:
-        #     if raw_password != request.POST.get("password2"):
-        #         msg = 'Пароли не совпадают'
-        #     elif len(raw_password) < 6:
-        #         msg = 'Пароль должен быть больше 6 символов'
-        #     else:
-        #         msg = 'Пароль изменен'
-        #         password = make_password(raw_password, hasher='default')
-                # print(password)
-                # user.set_password = password
-                # user.save()
-            # return render(request, 'users/profile.html', {'user_obj': user, 'msg': msg})
-        # user.password = raw_password
-        user.username = request.POST.get("username", user.username)
-        user.email = request.POST.get("email", user.email)
-        user.save()
+        user_form = EditProfileForm(request.POST, instance=user)
 
-        return redirect('/profile/')
+        if user_form.is_valid():
+            user = user_form.save()
+            if len(raw_password) != 0:
+                if raw_password != request.POST.get("password2"):
+                    msg = 'Пароли не совпадают'
+                elif len(raw_password) < 6:
+                    msg = 'Пароль должен быть больше 6 символов'
+                else:
+                    msg = 'Пароль изменен'
+                    user.set_password(raw_password)
+            user.save()
+            context = {
+                'groups': groups,
+                'user_obj': user,
+                'msg': msg,
+            }
+            return render(request, 'users/profile.html', context=context)
+
+        msg = 'Form is not valid'
+        context = {
+                'groups': groups,
+                'user_obj': user,
+                'msg': msg,
+            }
+        return render(request, 'users/profile.html', context=context    )
+
     else:
-        form = EditProfileForm(instance=request.user)
-
         user = request.user
         groups = Group.objects.all().order_by('-access_level')
 
         context = {
             'groups': groups,
             'user_obj': user,
-            'form': form,
         }
         return render(request, 'users/profile.html', context=context)
 
@@ -145,20 +152,27 @@ def profile(request):
 @login_required(login_url="/login/")
 def user(request, user_id):
     user_obj = get_object_or_404(User, id=user_id)
+
     if not user_id == request.user.id and not module_access(request, 'Users'):
         return redirect('/')
+
     if request.method == "POST":
         user_obj = get_object_or_404(User, id=user_id)
         if len(request.FILES) != 0:
-            user.profile_image = request.FILES['profile_image']
+            user_obj.profile_image = request.FILES['profile_image']
+
         if request.POST.get('group'):
             group = Group.objects.get(name=request.POST.get('group'))
-            user.groups.clear()
-            user.groups.add(group)
-        user.username = request.POST.get('username', user.username)
-        user.email = request.POST.get('email', user.email)
-        user.save()
-        return redirect('/users/')
+            user_obj.groups.clear()
+            user_obj.groups.add(group)
+
+        user_form = EditProfileForm(request.POST, instance=user_obj)
+        if user_form.is_valid():
+            user_obj = user_form.save()
+
+        user_obj.save()
+        return redirect(f'/user/{user_id}/')
+
     else:
         user_obj = User.objects.get(id=user_id)
         groups = Group.objects.all()
