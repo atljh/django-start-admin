@@ -1,0 +1,913 @@
+10001	US ADP Nonfarm Employment Change
+10002	US Manufacturing PMI 
+10003	US Construction Spending 
+10004	US ISM Manufacturing Employment 
+10005	US ISM Manufacturing New Orders Index 
+10006	US ISM Manufacturing PMI 
+10007	US ISM Manufacturing Prices 
+10008	US 3-Month Bill Auction
+10009	US 6-Month Bill Auction
+10010	US Redbook
+10011	US JOLTs Job Openings
+10012	US Total Vehicle Sales
+10013	US API Weekly Crude Oil Stock
+10014	US MBA 30-Year Mortgage Rate
+10015	US MBA Mortgage Applications 
+10016	US MBA Purchase Index
+10017	US Mortgage Market Index
+10018	US Mortgage Refinance Index
+10019	US S&P Global Composite PMI
+10020	US Services PMI 
+10021	US All Car Sales 
+10022	US All Truck Sales
+10023	US Durables Excluding Defense 
+10024	US Factory Orders
+10025	US Factory orders ex transportation
+10026	US ISM Non-Manufacturing Business Activity
+10027	US ISM Non-Manufacturing Employment
+10028	US ISM Non-Manufacturing New Orders
+10029	US ISM Non-Manufacturing PMI
+10030	US ISM Non-Manufacturing Prices 
+10031	US Crude Oil Inventories
+10032	US EIA Refinery Crude Runs
+10033	US Crude Oil Imports
+10034	US Distillate Fuel Production
+10035	US EIA Weekly Distillates Stocks
+10036	US Gasoline Production
+10037	US Heating Oil Stockpiles
+10038	US EIA Weekly Refinery Utilization Rates 
+10039	US Gasoline Inventories
+10040	US Challenger Job Cuts Y\Y
+10041	US Challenger Job Cuts m\m
+10042	US Continuing Jobless Claims
+10043	US Initial Jobless Claims
+10044	US Jobless Claims 4-Week Avg
+10045	US Exports
+10046	US Imports
+10047	US Trade Balance
+10048	US Natural Gas Storage
+10049	US 4-Week Bill Auction
+10050	US 8-Week Bill Auction
+10051	US Average Hourly Earnings Y\Y
+10052	US Average Hourly Earnings m/m
+10053	US Average Weekly Hours 
+10054	US Government Payrolls
+10055	US Manufacturing Payrolls
+10056	US Nonfarm Payrolls
+10057	US Participation Rate
+10058	US Private Nonfarm Payrolls
+10059	US U6 Unemployment Rate
+10060	US Unemployment Rate
+10061	US Baker Hughes Oil Rig Count 
+10062	US Baker Hughes Total Rig Count
+10063	US Consumer Credit 
+10064	US CFTC Aluminium speculative net positions
+10065	US CFTC Copper speculative net positions
+10066	US CFTC Corn speculative net positions
+10067	US CFTC Crude Oil speculative net positions
+10068	US CFTC Gold speculative net positions
+10069	US CFTC Nasdaq 100 speculative net positions
+10070	US CFTC Natural Gas speculative net positions
+10071	US CFTC S&P 500 speculative net positions
+10072	US CFTC Silver speculative net positions
+10073	US CFTC Soybeans speculative net positions
+10074	US CFTC Wheat speculative net positions
+10075	US CB Employment Trends Index
+10076	US Consumer Inflation Expectations
+10077	US NFIB Small Business Optimism
+10078	US Nonfarm Productivity Q\Q
+10079	US Unit Labor Costs Q\Q
+10080	US IBD/TIPP Economic Optimism
+10081	US 52-Week Bill Auction
+10082	US 3-Year Note Auction
+10083	US Core CPI m/m
+10084	US Core CPI Y/Y
+10085	US Core CPI Index
+10086	US CPI Y/Y
+10087	US CPI m/m
+10088	US CPI Index nsa m/m
+10089	US CPI Index sa m/m
+10090	US CPI nsa m/m
+10091	US Real Earnings
+10092	US Wholesale Inventories
+10093	US Wholesale Trade Sales
+10094	US Cleveland CPI
+10095	US Thomson Reuters IPSOS PCSI
+10096	US 10yr Note Auction
+10097	US Federal Budget Balance
+10098	US Core PPI Y/Y
+10099	US Core PPI m/m
+10100	US PPI excl Food/Energy/Transport Y/Y
+10101	US PPI m/m
+10102	US PPI ex. Food/Energy/Transport m/m
+10103	US PPI Y/Y
+10104	US 30-Year Bond Auction
+10105	US Export Price Index m/m
+10106	US Export Price Index Y/Y
+10107	US Import Price Index Y/Y
+10108	US Import Price Index m/m
+10109	US Michigan 5yr
+10110	US Michigan 1yr
+10111	US Michigan Expectations
+10112	US Michigan Sentiment
+10113	US Michigan Current Conditions
+10114	US NY Empire State Manufacturing Index 
+10115	US NAHB Housing Market Index
+10116	US Foreign Buying T-bonds
+10117	US Overall Net Capital Flow
+10118	US TIC Net Long-Term Transactions
+10119	US TIC Net Long-Term Transactions including Swaps
+10120	US Building Permits m/m
+10121	US Building Permits
+10122	US Housing Starts m/m
+10123	US Housing Starts
+10124	US Capacity Utilization Rate
+10125	US Industrial Production Y/Y
+10126	US Industrial Production m/m
+10127	US Manufacturing Production
+10128	US Core Retail Sales
+10129	US Retail Control
+10130	US Retail Sales m/m
+10131	US Retail Sales Y/Y
+10132	US Retail Sales Ex Gas/Autos
+10133	US Business Inventories
+10134	US Retail Inventories Ex Auto
+10135	US 20yr Bond Auction
+10136	US Philadelphia Fed Manufacturing Index
+10137	US Philly Fed Business Conditions
+10138	US Philly Fed CAPEX Index
+10139	US Philly Fed Employment
+10140	US Philly Fed New Orders
+10141	US Philly Fed Prices Paid
+10142	US Existing Home Sales m/m
+10143	US Existing Home Sales
+10144	US Leading Index
+10145	US 30-Year TIPS Auction
+10146	US Chicago Fed National Activity
+10147	US New Home Sales m/m
+10148	US New Home Sales 
+10149	US Richmond Manufacturing Index
+10150	US Richmond Manufacturing Shipments
+10151	US Richmond Services Index 
+10152	US 2yr Note Auction
+10153	US Core Durable Goods Orders
+10154	US Durable Goods Orders
+10155	US Durables Excluding Defense
+10156	US Goods Orders Non Defense Ex Air
+10157	US Pending Home Sales 
+10158	US Pending Home Sales Index
+10159	US 5yr Note Auction
+10160	US Core PCE Prices
+10161	US Corporate Profits
+10162	US GDP
+10163	US GDP Price Index
+10164	US GDP Sales
+10165	US PCE Prices
+10166	US Real Consumer Spending
+10167	US KC Fed Composite Index
+10168	US KC Fed Manufacturing Index
+10169	US  7yr Note Auction
+10170	US Core PCE Price Index Y/Y
+10171	US Core PCE Price Index
+10172	US Goods Trade Balance
+10173	US PCE Price index Y/Y
+10174	US PCE price index m/m
+10175	US Personal Income
+10176	US Personal Spending
+10177	US Real Personal Consumption
+10178	US Dallas Fed PCE
+10179	US House Price Index m/m
+10180	US House Price Index Y/Y
+10181	US House Price Index
+10182	US S&P/CS HPI Composite - 20 sa
+10183	US S&P/CS HPI Composite - 20 nsa
+10184	US S&P/CS HPI Composite - 20 nsa Y/Y
+10185	US CB Consumer Confidence
+10186	US Dallas Fed Services Revenues
+10187	US Texas Services Sector Outlook
+10188	US Chicago PMI
+10189	US Dallas Fed Mfg Business Index
+10190	US Fed Interest Rate Decision
+10191	US Employment Benefits
+10192	US Employment Cost Index
+10193	US Employment Wages
+10194	US WASDE Corn Endstock
+10195	US WASDE Corn Production
+10196	US WASDE Corn Yield
+10197	US WASDE Soybean Endstock
+10198	US WASDE Soybean Production
+10199	US WASDE Soybean Yield
+10200	US WASDE Wheat Endstock
+10201	US WASDE Wheat Production
+20001	CAD Manufacturing PMI
+20002	CAD Exports
+20003	CAD Imports
+20004	CAD Trade Balance
+20005	CAD Employment Change
+20006	CAD Full Employment Change
+20007	CAD Part Time Employment Change
+20008	CAD Participation Rate
+20009	CAD Unemployment Rate
+20010	CAD Ivey PMI nsa
+20011	CAD Ivey PMI
+20012	CAD CFTC CAD speculative net positions
+20013	CAD Building Permits
+20014	CAD New Motor Vehicle Sales
+20015	CAD Housing Starts
+20016	CAD Manufacturing Sales
+20017	CAD Wholesale Sales
+20018	CAD Foreign Securities Purchases
+20019	CAD Foreign Securities Purchases by Canadians
+20020	CAD Core CPI Y/Y
+20021	CAD Core CPI m/m
+20022	CAD CPI Y/Y
+20023	CAD CPI m/m
+20024	CAD IPPI m/m
+20025	CAD IPPI Y/Y
+20026	CAD New Housing Price Index
+20027	CAD RMPI Y/Y
+20028	CAD RMPI m/m
+20029	CAD Corporate Profits Q/Q
+20030	CAD Core Retail Sales
+20031	CAD Retail Sales
+20032	CAD Budget Balance Y/Y
+20033	CAD Budget Balance
+20034	CAD Current Account Q/Q
+20035	CAD GDP Implicit Price Q/Q
+20036	CAD GDP m/m
+20037	CAD GDP Y/Y
+20038	CAD GDP Q/Q
+20039	CAD GDP Annualized Q/Q
+20040	CAD BoC Interest Rate
+20041	CAD Labor Productivity Q/Q
+20042	CAD Capacity Utilization Rate Q/Q
+20043	CAD Median CPI Y/Y
+20044	CAD Trimmed CPI Y/Y
+20045	CAD Common CPI Y/Y
+30001	AU AIG Manufacturing Index
+30002	AU Manufacturing PMI
+30003	AU MI Inflation Gauge
+30004	AU ANZ Job Advertisements
+30005	AU Building Approvals
+30006	AU Home Loans
+30007	AU Invest Housing Finance
+30008	AU Private House Approvals
+30009	AU RBA Interest Rate
+30010	AU Commodity Prices
+30011	AU AIG Construction Index
+30012	AU Services PMI
+30013	AU Retail Sales
+30014	AU Retail Sales Q/Q
+30015	AU Exports
+30016	AU Imports
+30017	AU Trade Balance
+30018	AU AIG Services Index
+30019	AU CFTC AUD speculative net positions
+30020	AU Westpac Consumer Sentiment
+30021	AU NAB Business Confidence
+30022	AU NAB Business Survey
+30023	AU MI Inflation Expectations
+30024	AU HIA New Home Sales
+30025	AU Thomson Reuters IPSOS PCSI
+30026	AU MI Leading Index
+30027	AU Wage Price Index Y/Y
+30028	AU Wage Price Index Q/Q
+30029	AU Employment Change
+30030	AU Full Employment Change
+30031	AU Participation Rate
+30032	AU Unemployment Rate
+30033	AU Construction Work Done Q/Q
+30034	AU Housing Credit
+30035	AU Private Sector Credit
+30036	AU NAB Quarterly Business Confidence
+30037	AU CPI Y/Y
+30038	AU CPI Q/Q
+30039	AU CPI Index Number
+30040	AU Trimmed Mean CPI Y/Y
+30041	AU Trimmed Mean CPI Q/Q
+30042	AU Weighted mean CPI Y/Y
+30043	AU Weighted mean CPI Q/Q
+30044	AU Export Price Index 
+30045	AU Import Price Index
+30046	AU PPI Y/Y
+30047	AU PPI Q/Q
+30048	AU GDP Y/Y
+30049	AU GDP Q/Q
+30050	AU GDP Capital Expenditure
+30051	AU GDP Chain Price Index
+30052	AU GDP Final Consumption
+30053	AU Private New Capital Expenditure
+30054	AU Net Exports Contribution
+30055	AU Current Account 
+30056	AU Company Gross Operating Profits
+30057	AU Company Profits Pre-Tax
+30058	AU Business inventories
+40001	NZ Building Consents
+40002	NZ Employment Change
+40003	NZ Labor Cost Index Y/Y
+40004	NZ Labor Cost Index Q/Q
+40005	NZ Participation Rate
+40006	NZ Unemployment Rate
+40007	NZ ANZ Commodity Price Index
+40008	NZ CFTC NZD speculative net positions
+40009	NZ Electronic Card Retail Sales m/m
+40010	NZ Electronic Card Retail Sales Y/Y
+40011	NZ RBNZ Offshore Holdings
+40012	NZ External Migration & Visitors
+40013	NZ FPI
+40014	NZ Permanent/Long-Term Migration
+40015	NZ Inflation Expectations
+40016	NZ Business NZ PMI
+40017	NZ PPI Input Q/Q
+40018	NZ PPI Output Q/Q
+40019	NZ Budget Balance
+40020	NZ Net Debt Forecast
+40021	NZ Economic Forecast
+40022	NZ Exports
+40023	NZ Imports
+40024	NZ Trade Balance Y/Y
+40025	NZ Trade Balance m/m
+40026	NZ Credit Card Spending
+40027	NZ Core Retail Sales
+40028	NZ Retail Sales 
+40029	NZ Retail Sales Quarterly Vs. Year Ago
+40030	NZ RBNZ Interest Rate
+40031	NZ ANZ Business Confidence
+40032	NZ NBNZ Own Activity
+40033	NZ Terms of Trade - Exports Prices
+40034	NZ Terms of Trade - Exports Volume
+40035	NZ Terms of Trade - Imports Prices
+40036	NZ Terms of Trade Index
+40037	NZ Manufacturing Sales Volume
+40038	NZ Current Account Q/Q
+40039	NZ Current Account Y/Y
+40040	NZ Current Account % of GDP
+40041	NZ Westpac Consumer Sentiment
+40042	NZ GDP Q/Q
+40043	NZ GDP Y/Y
+40044	NZ GDP Annual Average
+40045	NZ GDP Expenditure
+40046	NZ NZIER Business Confidence
+40047	NZ NZIER QSBO Capacity Utilization
+40048	NZ CPI Q/Q
+40049	NZ CPI Y/Y
+50001	UK Manufacturing PMI
+50002	UK BRC Shop Price Index
+50003	UK BoE Consumer Credit
+50004	UK M4 Money Supply
+50005	UK Mortgage Approvals
+50006	UK Mortgage Lending
+50007	UK Net Lending to Individuals
+50008	UK Composite PMI
+50009	UK Services PMI
+50010	UK BoE MPC vote cut
+50011	UK BoE MPC vote hike
+50012	UK BoE MPC vote unchanged
+50013	UK BoE Interest Rate
+50014	UK Halifax House Price Index m/m
+50015	UK Halifax House Price Index  Y/Y
+50016	UK Construction PMI
+50017	UK CFTC GBP speculative net positions
+50018	UK BRC Retail Sales Monitor
+50019	UK 7yr Treasury Gilt Auction
+50020	UK RICS House Price Balance
+50021	UK Business Investment Q/Q
+50022	UK Business Investment Y/Y
+50023	UK Construction Output m/m
+50024	UK Construction Output Y/Y
+50025	UK GDP Y/Y
+50026	UK GDP m/m
+50027	UK GDP Q/Q
+50028	UK Index of Services
+50029	UK Industrial Production Y/Y
+50030	UK Industrial Production m/m
+50031	UK Manufacturing Production Y/Y
+50032	UK Manufacturing Production m/m
+50033	UK Monthly GDP 3M/3M Change
+50034	UK Trade Balance 
+50035	UK Trade Balance Non-EU
+50036	UK Thomson Reuters IPSOS PCSI
+50037	UK NIESR Monthly GDP Tracker
+50038	UK NIESR GDP Estimate
+50039	UK Average Earnings ex Bonus
+50040	UK Average Earnings Index +Bonus
+50041	UK Claimant Count Change
+50042	UK Employment Change 3M/3M
+50043	UK Labour Productivity
+50044	UK Unemployment Rate
+50045	UK 30yr Treasury Gilt Auction
+50046	UK Car Registration Y/Y
+50047	UK Car Registration m/m
+50048	UK Core CPI m/m
+50049	UK Core CPI Y/Y
+50050	UK Core PPI Output
+50051	UK Core PPI Output
+50052	UK Core RPI m/m
+50053	UK Core RPI Y/Y
+50054	UK CPI m/m
+50055	UK CPI Y/Y
+50056	UK CPI nsa
+50057	UK PPI Input m/m
+50058	UK PPI Input Y/Y
+50059	UK PPI Output Y/Y
+50060	UK PPI Output m/m
+50061	UK RPI m/m
+50062	UK RPI Y/Y
+50063	UK House Price Index
+50064	UK CBI Industrial Trends Orders
+50065	UK GfK Consumer Confidence
+50066	UK Core Retail Sales Y/Y
+50067	UK Core Retail Sales m/m
+50068	UK Retail Sales Y/Y
+50069	UK Retail Sales m/m
+50070	UK Rightmove House Price Index
+50071	UK Public Sector Net Borrowing
+50072	UK Public Sector Net Cash Requirement
+50073	UK CBI Distributive Trades Survey
+50074	UK Nationwide HPI Y/Y
+50075	UK Nationwide HPI m/m
+50076	UK 10yr Treasury Gilt Auction
+50077	UK Current Account
+101	CN Caixin Manufacturing PMI
+102	CN Caixin Services PMI
+103	CN FX Reserves
+104	CN Exports
+105	CN Imports
+106	CN Trade Balance
+107	CN CPI m/m
+108	CN CPI Y/Y
+109	CN PPI Y/Y
+110	CN China Thomson Reuters IPSOS PCSI
+111	CN M2 Money Stock
+112	CN New Loans
+113	CN Outstanding Loan Growth
+114	CN Chinese Total Social Financing
+115	CN House Prices
+116	CN Fixed Asset Investment
+117	CN Industrial Production
+118	CN Chinese Industrial Production YTD
+119	CN Retail Sales
+120	CN Chinese Retail Sales YTD
+121	CN Chinese Unemployment Rate
+122	CN PBoC Loan Prime Rate
+123	CN FDI
+124	CN PBoC Loan Prime Rate
+125	CN Chinese Industrial profit Y/Y
+126	CN Chinese Industrial profit YTD
+127	CN Chinese Composite PMI
+128	CN Manufacturing PMI
+129	CN Non-Manufacturing PMI 
+130	CN GDP Q/Q
+131	CN GDP Y/Y
+132	CN Chinese GDP YTD
+201	CZ S&P Global PMI
+202	CZ Budget Balance
+203	CZ Interest Rate
+204	CZ Construction Output
+205	CZ Industrial Production
+206	CZ Trade Balance NRA
+207	CZ Unemployment Rate
+208	CZ FX Reserves (EUR)
+209	CZ CPI Y/Y
+210	CZ CPI m/m
+211	CZ Retail Sales 
+212	CZ Current Account
+213	CZ PPI m/m
+214	CZ PPI Y/Y
+215	CZ GDP Y/Y
+216	CZ GDP Q/Q
+301	EU Manufacturing PMI
+302	EU Unemployment Rate
+303	EU S&P Global Composite PMI
+304	EU Services PMI
+305	EU PPI Y/Y
+306	EU PPI m/m
+307	EU Retail Sales Y/Y
+308	EU Retail Sales m/m
+309	EU CFTC EUR speculative net positions
+310	EU Sentix Investor Confidence
+311	EU Industrial Production Y/Y
+312	EU Industrial Production m/m
+313	EU Reserve Assets Total
+314	EU Trade Balance
+315	EU ZEW Economic Sentiment
+316	EU Employment Change Y/Y
+317	EU Employment Change Q/Q
+318	EU Employment Overall 
+319	EU GDP Y/Y
+320	EU GDP Q/Q
+321	EU Construction Output
+322	EU Core CPI m/m
+323	EU Core CPI Y/Y
+324	EU CPI Y/Y
+325	EU CPI m/m
+326	EU CPI ex Tobacco m/m
+327	EU CPI ex Tobacco Y/Y
+328	EU CPI nsa
+329	EU HICP ex Energy & Food Y/Y
+330	EU HICP ex Energy & Food m/m
+331	EU Current Account
+332	EU Current Account nsa
+333	EU Consumer Confidence
+334	EU M3 Money Supply
+335	EU Loans to Non Financial Corporations
+336	EU Private Sector Loans
+337	EU Business and Consumer Survey
+338	EU Business Climate
+339	EU Consumer Confidence
+340	EU Consumer Inflation Expectation
+341	EU Selling Price Expectations
+342	EU Services Sentiment
+343	EU Industrial Sentiment
+344	EU Deposit Facility Rate
+345	EU ECB Marginal Lending Facility
+346	EU ECB Interest Rate 
+347	EU Wages in euro zone
+348	EU Labor Cost Index
+401	DE Retail Sales m/m
+402	DE Retail Sales Y/Y
+403	DE Manufacturing PMI
+404	DE Unemployment Change
+405	DE Unemployment Rate
+406	DE Unemployment
+407	DE Unemployment nsa
+408	DE Exports
+409	DE Imports
+410	DE Trade Balance
+411	DE Composite PMI
+412	DE Services PMI
+413	DE 10yr Bund Auction
+414	DE Factory Orders
+415	DE IHS S&P Global Construction PMI
+416	DE Industrial Production
+417	DE ZEW Current Conditions
+418	DE ZEW Economic Sentiment
+419	DE 5yr Bobl Auction
+420	DE CPI Y/Y
+421	DE CPI m/m
+422	DE HICP Y/Y
+423	DE HICP m/m
+424	DE 10yr Bund Auction
+425	DE WPI Y/Y
+426	DE WPI m/m
+427	DE 12-Month Bubill Auction
+428	DE 2Yr Schatz Auction
+429	DE Car Registration Y/Y
+430	DE Car Registration m/m
+431	DE 30Yr Bund Auction
+432	DE PPI m/m
+433	DE PPI Y/Y
+434	DE Business Expectations
+435	DE Current Assessment
+436	DE Ifo Business Climate Index
+437	DE GDP Y/Y
+438	DE GDP Q/Q
+439	DE GfK German Consumer Climate
+440	DE Import Price Index m/m
+441	DE Import Price Index Y/Y
+442	DE Current Account Balance nsa
+501	FR Manufacturing PMI
+502	FR Industrial Production 
+503	FR S&P Global Composite PMI 
+504	FR Services PMI 
+505	FR Reserve Assets Total 
+506	FR GDP Q/Q
+507	FR GDP Y/Y
+508	FR CPI m/m
+509	FR CPI Y/Y
+510	FR HICP Y/Y
+511	FR HICP m/m
+601	JP Manufacturing PMI
+602	JP Monetary Base
+603	JP 10yr JGB Auction
+604	JP Services PMI
+605	JP Foreign Bonds Buying
+606	JP Foreign Investments in Japanese Stocks
+607	JP Average Cash Earnings
+608	JP Household Spending Y/Y
+609	JP Household Spending m/m
+610	JP Overall wage income of employees
+611	JP Overtime Pay
+612	JP Foreign Reserves (USD)
+613	JP Coincident Indicator
+614	JP Leading Index m/m
+615	JP Leading Index
+616	JP CFTC JPY speculative net positions
+617	JP Adjusted Current Account
+618	JP Bank Lending
+619	JP Current Account nsa
+620	JP Economy Watchers Current Index
+621	JP M2 Money Stock
+622	JP M3 Money Supply
+623	JP 30yr JGB Auction
+624	JP Machine Tool Orders
+625	JP PPI Y/Y
+626	JP PPI m/m
+627	JP Thomson Reuters IPSOS PCSI
+628	JP GDP Q/Q
+629	JP GDP Y/Y
+630	JP GDP Capital Expenditure
+631	JP GDP External Demand
+632	JP GDP Price Index
+633	JP GDP Private Consumption
+634	JP Capacity Utilization
+635	JP Industrial Production
+636	JP 5yr JGB Auction
+637	JP Tertiary Industry Activity Index 
+638	JP Reuters Tankan Index
+639	JP Adjusted Trade Balance
+640	JP Core Machinery Orders Y/Y
+641	JP Core Machinery Orders m/m
+642	JP Exports
+643	JP Imports
+644	JP Trade Balance
+645	JP CPI nsa
+646	JP National Core CPI 
+647	JP National CPI Y/Y
+648	JP National CPI m/m
+649	JP BoJ Core CPI
+650	JP Corporate Services Price Index
+651	JP Tokyo Core CPI
+652	JP Tokyo CPI
+653	JP CPI Tokyo Ex Food and Energy
+654	JP Jobs/applications ratio
+655	JP Unemployment Rate
+656	JP Industrial Production forecast 1m ahead
+657	JP Industrial Production forecast 2m ahead
+658	JP Retail Sales
+659	JP Construction Orders
+660	JP Household Confidence
+661	JP Housing Starts
+662	JP Tankan All Big Industry CAPEX
+663	JP Tankan All Small Industry CAPEX
+664	JP Tankan Big Manufacturing Outlook Index
+665	JP Tankan Large Manufacturers Index
+666	JP Tankan Large Non-Manufacturers Diffusion Index
+667	JP Tankan Large Non-Manufacturers Index
+668	JP Tankan Small Manufacturers Diffusion Index
+669	JP Tankan Small Manufacturing Index
+670	JP Tankan Small Non-Manufacturers Diffusion Index 
+671	JP Tankan Small Non-Manufacturing Index
+672	JP BoJ Interest Rate
+701	HK Retail Sales
+702	HK Manufacturing PMI
+703	HK Foreign Reserves (USD)
+704	HK Unemployment Rate
+705	HK CPI
+706	HK Exports
+707	HK Imports
+708	HK Trade Balance
+709	HK M3 Money Supply
+710	HK GDP Q/Q
+711	HK GDP Y/Y
+801	IN Exports
+802	IN Imports
+803	IN Trade Balance
+804	IN Nikkei Services PMI
+805	IN FX Reserves, USD
+806	IN M3 Money Supply
+807	IN Interest Rate
+808	IN Reverse REPO Rate
+809	IN Cash Reserve Ratio
+810	IN Bank Loan Growth
+811	IN Deposit Growth
+812	IN Industrial Production
+813	IN Manufacturing Output
+814	IN CPI
+815	IN WPI Food
+816	IN WPI Fuel
+817	IN WPI Inflation
+818	IN WPI Manufacturing Inflation
+819	IN Balance of Payments
+820	IN Current Account % of GDP
+821	IN Current Account Q/Q
+822	IN Trade Balance (USD) Q/Q
+823	IN Current Account
+824	IN Current Account % of GDP Y/Y
+825	IN Federal Fiscal Deficit
+826	IN Foreign Debt
+827	IN Infrastructure Output
+828	IN Nikkei S&P Global Manufacturing PMI
+829	IN GDP Quarterly
+901	HU GDP
+902	HU Manufacturing PMI
+903	HU Retail Sales
+904	HU Core CPI
+905	HU CPI
+906	HU Industrial Output
+907	HU Trade Balance
+908	HU Budget Balance
+909	HU Current Account
+910	HU Q/Q Unemployment Rate
+911	HU Gross Wages
+912	HU Interest Rate
+913	HU PPI
+1001	MXN Manufacturing PMI
+1002	MXN Consumer Confidence
+1003	MXN Consumer Confidence nsa
+1004	MXN CFTC MXN speculative net positions
+1005	MXN Gross Fixed Investments m/m
+1006	MXN Gross Fixed Investments Y/Y
+1007	MXN Core CPI
+1008	MXN CPI Y/Y
+1009	MXN CPI m/m
+1010	MXN Industrial Production m/m
+1011	MXN Industrial Production Y/Y
+1012	MXN Aggregate Demand Q/Q
+1013	MXN Aggregate Demand Y/Y
+1014	MXN Private Spending Q/Q
+1015	MXN Private Spending Y/Y
+1016	MXN 1st Half-Month CPI
+1017	MXN 1st Half-Month Core CPI
+1018	MXN Retail Sales Y/Y
+1019	MXN Retail Sales m/m
+1020	MXN Interest Rate
+1021	MXN Economic Activity Y/Y
+1022	MXN Economic Activity m/m
+1023	MXN Trade Balance 
+1024	MXN Trade Balance (USD)
+1025	MXN Unemployment Rate
+1026	MXN Unemployment Rate nsa
+1027	MXN Fiscal Balance
+1028	MXN GDP Y/Y
+1029	MXN GDP Q/Q
+2001	NOK Current Account 
+2002	NOK Manufacturing PMI
+2003	NOK Unemployment Change
+2004	NOK Unemployment Rate nsa
+2005	NOK House Price Index
+2006	NOK Manufacturing Production
+2007    NOK Core CPI
+2008	NOK Core Inflation
+2009	NOK CPI Y/Y
+2010	NOK CPI m/m
+2011	NOK PPI 
+2012	NOK Norges Bank regional network Survey
+2013	NOK Trade Balance
+2014	NOK Unemployment Rate
+2015	NOK Interest Rate
+2016	NOK Credit Indicator
+2017	NOK Core Retail Sales
+2018	NOK Central Bank Currency Purchase
+2019	NOK GDP 
+2020	NOK Mainland 
+3001	PL Manufacturing PMI
+3002	PL FX Reserves (EUR)
+3003	PL Interest Rate
+3004	PL Current Account (EUR)
+3005	PL CPI m/m
+3006	PL CPI Y/Y
+3007	PL Core CPI 
+3008	PL Corp. Sector Wages
+3009	PL Employment Growth
+3010	PL Industrial Output
+3011	PL PPI
+3012	PL Retail Sales
+3013	PL M3 Money Supply
+3014	PL Unemployment Rate
+3015	PL GDP Y/Y
+3016	PL GDP Q/Q
+4001	SG Manufacturing PMI
+4002	SG Retail Sales m/m
+4003	SG Retail Sales Y/Y
+4004	SG Foreign Reserves USD
+4005	SG Non-Oil Exports Y/Y
+4006	SG Non-Oil Exports m/m
+4007	SG Trade Balance
+4008	SG CPI
+4009	SG Industrial Production m/m
+4010	SG Industrial Production Y/Y
+4011	SG Bank Lending
+4012	SG URA Property Index
+4013	SG GDP Y/Y
+4014	SG GDP Q/Q
+5001	ZAR Total Vehicle Sales Y/Y
+5002	ZAR Total Vehicle Sales m/m
+5003	ZAR South Africa Standard Bank PMI
+5004	ZAR Foreign Reserves (USD)
+5005	ZAR Net FX Reserves (USD)
+5006	ZAR GDP Y/Y
+5007	ZAR GDP Annualized Q/Q
+5008	ZAR Current Account
+5009	ZAR Current Account % of GDP
+5010	ZAR Gold Production
+5011	ZAR Mining Production
+5012	ZAR Manufacturing Production
+5013	ZAR Manufacturing Production
+5014	ZAR Business Confidence
+5015	ZAR Retail Sales
+5016	ZAR Core CPI Y/Y
+5017	ZAR Core CPI m/m
+5018	ZAR CPI Y/Y
+5019	ZAR CPI m/m
+5020	ZAR M3 Money Supply
+5021	ZAR Private Sector Credit
+5022	ZAR PPI Y/Y
+5023	ZAR PPI m/m
+5024	ZAR Trade Balance
+5025	ZAR Manufacturing PMI
+5026	ZAR Interest Rate
+5027	ZAR Prime Rate
+5028	ZAR Unemployment Rate
+5029	ZAR Unemployment
+6001	SEK Manufacturing PMI
+6002	SEK Services PMI
+6003	SEK Current Account
+6004	SEK Industrial Production Y/Y
+6005	SEK Industrial Production m/m
+6006	SEK Industrial New Orders
+6007	SEK Unemployment Rate Registered
+6008	SEK CPI Y/Y
+6009	SEK CPI m/m
+6010	SEK CPIF CPI m/m
+6011	SEK CPIF CPI Y/Y
+6012	SEK Unemployment Rate 
+6013	SEK PPI Y/Y
+6014	SEK PPI m/m
+6015	SEK Retail Sales Y/Y
+6016	SEK Retail Sales m/m
+6017	SEK Trade Balance
+6018	SEK Household Lending Growth
+6019	SEK Consumer Confidence
+6020	SEK Manufacturing Confidence
+6021	SEK Interest Rate
+6022	SEK GDP Y/Y
+6023	SEK GDP Q/Q
+7001	CHF procure.ch PMI
+7002	CHF CPI m/m
+7003	CHF CPI Y/Y 
+7004	CHF CFTC CHF speculative net positions
+7005	CHF Unemployment Rate nsa
+7006	CHF Unemployment Rate sa
+7007	CHF PPI Y/Y
+7008	CHF PPI m/m
+7009	CHF SNB Interest Rate
+7010	CHF ZEW Expectations
+7011	CHF Retail Sales
+7012	CHF KOF Leading Indicators
+7013	CHF Trade Balance
+7014	CHF SECO Consumer Climate
+7015	CHF GDP Y/Y
+7016	CHF GDP Q/Q
+8001	TR Manufacturing PMI
+8002	TR Exports
+8003	TR CPI Y/Y
+8004	TR CPI m/m
+8005	TR PPI Y/Y
+8006	TR PPI m/m
+8007	TR Treasury Cash Balance
+8008	TR Unemployment Rate
+8009	TR Current Account (USD)
+8010	TR Industrial Production
+8011	TR Turkish Retail Sales Y/Y
+8012	TR Turkish Retail Sales m/m
+8013	TR Budget balance
+8014	TR End Year CPI Forecast
+8015	TR Foreign Arrivals
+8016	TR Central Government Debt Stock
+8017	TR Consumer Confidence
+8018	TR One-Week Repo Rate
+8019	TR Overnight Borrowing Rate
+8020	TR Overnight Lending Rate
+8021	TR Capacity Utilization
+8022	TR Manufacturing Confidence 
+8023	TR Turkish Economic Confidence Index
+8024	TR Trade Balance
+8025	TR GDP Y/Y
+9001	BRL S&P Global Manufacturing PMI
+9002	BRL Foreign Exchange Flows
+9003	BRL Trade Balance
+9004	BRL IPC-Fipe Inflation Index
+9005	BRL GDP Q/Q
+9006	BRL GDP Y/Y
+9007	BRL CFTC BRL speculative net positions
+9008	BRL S&P Global Composite PMI
+9009	BRL S&P Global Services PMI
+9010	BRL IGP-DI Inflation Index
+9011	BRL PPI
+9012	BRL Auto Production
+9013	BRL Auto Sales
+9014	BRL Industrial Production Y/Y
+9015	BRL Industrial Production m/m
+9016	BRL CAGED Net Payroll Jobs
+9017	BRL Retail Sales Y/Y
+9018	BRL Retail Sales m/m
+9019	BRL CPI Y/Y
+9020	BRL CPI m/m
+9021	BRL Brazilian IPCA Inflation Index SA
+9022	BRL IGP-10 Inflation Index
+9023	BRL Brazilian Service Sector Growth m/m
+9024	BRL Brazilian Service Sector Growth Y/Y
+9025	BRL Interest Rate
+9026	BRL IBC-Br Economic Activity
+9027	BRL Unemployment Rate
+9028	BRL FGV Consumer confidence
+9029	BRL Mid-Month CPI Y/Y
+9030	BRL Mid-Month CPI m/m
+9031	BRL Federal Tax Revenue
+9032	BRL IGP-M Inflation Index
+9033	BRL Long Term Interest Rate TJLP
+9034	BRL Net Debt-to-GDP ratio
+9035	BRL Budget Balance
+9036	BRL Budget Surplus
+9037	BRL Gross Debt-to-GDP ratio

@@ -1,5 +1,6 @@
 import os, environ
 
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, True)
@@ -17,6 +18,7 @@ SECRET_KEY = env('SECRET_KEY', default='S#perS3crEt_007')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
+
 
 # Assets Management
 ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
@@ -134,6 +136,9 @@ USE_TZ = True
 # User
 
 AUTH_USER_MODEL = 'users.User'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 #############################################################
 # SRC: https://devcenter.heroku.com/articles/django-assets

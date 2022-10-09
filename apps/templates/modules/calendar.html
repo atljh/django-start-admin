@@ -4,8 +4,33 @@
 
 <!-- Specific CSS Plugins goes HERE  -->
 {% block css_plugins %}
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <link rel="stylesheet" href="{{ ASSETS_ROOT }}/js/select.dataTables.min.css">
+  <style>
+    @keyframes spinner {
+      0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+      }
+      100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+      }
+    }
+    .spin::before {
+      animation: 1.5s linear infinite spinner;
+      animation-play-state: inherit;
+      border: solid 5px #cfd0d1;
+      border-bottom-color: #1c87c9;
+      border-radius: 50%;
+      content: "";
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      top: 200%;
+      left: 45%;
+      transform: translate3d(-50%, -50%, 0);
+      will-change: transform;
+    }
+  </style>
 
 {% endblock css_plugins %}
 
@@ -18,35 +43,81 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <!-- <div class="d-flex justify-content-between align-items-center mb-3"> -->
-
+          <form method="get">
           <div class="d-flex  align-items-center mb-3">
-            <h4 class="card-title mb-0" style="border-right-style: solid ;margin-right: 40px; border-right-width: 0px;">Economic Calendar </h4> 
-            <li class="nav-item d-none d-lg-block">
-              <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
-                <span class="input-group-addon input-group-prepend border-right">
-                  <span class="icon-calendar input-group-text calendar-icon"></span>
-                </span>
-                <input type="text" class="form-control">
-              </div>
-            </li>
-            <button type="button" class="btn btn-light">Today</button>
-            <button type="button" class="btn btn-light">Tomorrow</button>
-            <button type="button" class="btn btn-light">Thiw week</button>
-            <button type="button" class="btn btn-light">Next week</button>
+            {% csrf_token %}
+            <h4 class="card-title mb-0" style="border-right-style: solid ;margin-right: 40px; border-right-width: 0px;">Economic Calendar </h4>
+            <input type="text" name="daterange" value="var fullDate = new Date()" />
+            <a class="btn btn-light search-date" id="today">Today</a>
+            <a class="btn btn-light search-date" id="tomorrow">Tomorrow</a>
+            <a class="btn btn-light search-date" id="this week">This week</a>
+            <a class="btn btn-light search-date" id="next week">Next week</a>
 
+            <select id="timezone" name="timezone" class="col-sm-1 timezones">
+              <option selected value="{{user.timezone}}">{{user.timezone}}</option>
+            
+              <option value="Pacific/Honolulu">Pacific/Honolulu GMT-10:00</option>
+              <option value="America/Anchorage">America/Anchorage GMT-9:00</option>
+              <option value="America/Los_Angeles">America/Los_Angeles GMT-8:00</option>
+              <option value="America/Boise">America/Boise GMT-7:00</option>
+              <option value="America/Denver">America/Denver GMT-7:00</option>
+              <option value="America/Phoenix">America/Phoenix GMT-7:00</option>
+              <option value="America/Chicago">America/Chicago GMT-6:00</option>
+              <option value="America/Detroit">America/Detroit GMT-5:00</option>
+              <option value="America/New_York">America/New_York GMT-5:00</option>
+              <option value="Europe/Kiev">Europe/Kiev GMT+2:00</option>
+              <option value="Europe/Kirov">Europe/Kirov GMT+3:00</option>
+              <option value="Europe/Lisbon">Europe/Lisbon GMT+0:00</option>
+              <option value="Europe/Ljubljana">Europe/Ljubljana GMT+1:00</option>
+              <option value="Europe/London">Europe/London GMT+0:00</option>
+              <option value="Europe/Luxembourg">Europe/Luxembourg GMT+1:00</option>
+              <option value="Europe/Madrid">Europe/Madrid GMT+1:00</option>
+              <option value="Europe/Malta">Europe/Malta GMT+1:00</option>
+              <option value="Europe/Mariehamn">Europe/Mariehamn GMT+2:00</option>
+              <option value="Europe/Minsk">Europe/Minsk GMT+3:00</option>
+              <option value="Europe/Monaco">Europe/Monaco GMT+1:00</option>
+              <option value="Europe/Moscow">Europe/Moscow GMT+3:00</option>
+              <option value="Europe/Nicosia">Europe/Nicosia GMT+2:00</option>
+              <option value="Europe/Oslo">Europe/Oslo GMT+1:00</option>
+              <option value="Europe/Paris">Europe/Paris GMT+1:00</option>
+              <option value="Europe/Podgorica">Europe/Podgorica GMT+1:00</option>
+              <option value="Europe/Prague">Europe/Prague GMT+1:00</option>
+              <option value="Europe/Riga">Europe/Riga GMT+2:00</option>
+              <option value="Europe/Rome">Europe/Rome GMT+1:00</option>
+              <option value="Europe/Samara">Europe/Samara GMT+4:00</option>
+              <option value="Europe/San_Marino">Europe/San_Marino GMT+1:00</option>
+              <option value="Europe/Sarajevo">Europe/Sarajevo GMT+1:00</option>
+              <option value="Europe/Saratov">Europe/Saratov GMT+4:00</option>
+              <option value="Europe/Simferopol">Europe/Simferopol GMT+3:00</option>
+              <option value="Europe/Skopje">Europe/Skopje GMT+1:00</option>
+              <option value="Europe/Sofia">Europe/Sofia GMT+2:00</option>
+              <option value="Europe/Stockholm">Europe/Stockholm GMT+1:00</option>
+              <option value="Europe/Tallinn">Europe/Tallinn GMT+2:00</option>
+              <option value="Europe/Tirane">Europe/Tirane GMT+1:00</option>
+              <option value="Europe/Tiraspol">Europe/Tiraspol GMT+2:00</option>
+              <option value="Europe/Ulyanovsk">Europe/Ulyanovsk GMT+4:00</option>
+              <option value="Europe/Uzhgorod">Europe/Uzhgorod GMT+2:00</option>
+              <option value="Europe/Vaduz">Europe/Vaduz GMT+1:00</option>
+              <option value="Europe/Vatican">Europe/Vatican GMT+1:00</option>
+              <option value="Europe/Vienna">Europe/Vienna GMT+1:00</option>
+              <option value="Europe/Vilnius">Europe/Vilnius GMT+2:00</option>
+              <option value="Europe/Volgograd">Europe/Volgograd GMT+4:00</option>
+              <option value="Europe/Warsaw">Europe/Warsaw GMT+1:00</option>
+              <option value="Europe/Zagreb">Europe/Zagreb GMT+1:00</option>
+              <option value="Europe/Zaporozhye">Europe/Zaporozhye GMT+2:00</option>
+            </select>
+          </form>
           </div>
-          <div>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle toggle-dark btn-lg mb-0 me-0" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">Select timezone</button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3" style="">
-                <h6 class="dropdown-header">Some</h6>
-                <a class="dropdown-item" href="#">Year Wise</a>
+          <div class="col-sm-1 mb-3">
+            <div class="form-group">
+              <select class="form-control select-news" style="outline: 1px solid #000; width: auto;">
+                  <option selected value="Economic releases">Economic releases</option>
+                  <option value="Etalon news">Etalon news</option>
+              </select>
               </div>
             </div>
-          </div>
-            <table class="table table-striped">
-              <thead>
+            <table class="table table-striped news-table">
+              <thead class="news-head">
                 <tr>
                   <th>
                     Time
@@ -68,140 +139,41 @@
                   </th>
                 </tr>
               </thead>
+              <thead class="etalon-news-head" style="display: none;">
+                <tr>
+                  <th>
+                    Global report
+                  </th>
+                </tr>
+              </thead>
               <tbody>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face1.jpg" alt="image">
+
+                <tr id="today-tr"></tr>
+                {% for new in news %}
+                <tr onmouseover="this.style.cursor='pointer'" id="{{ new.id }}">
+                  <td>
+                    {{ new.time|date:'H:i'}}
                   </td>
                   <td>
-                    Herman Beck
+                    {{ new.event}}
                   </td>
                   <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    {{ new.actual|default_if_none:"" }}
                   </td>
                   <td>
-                    $ 77.99
+                    {{ new.estimate|default_if_none:""}}
+                  </td>
+                  <td >
+                    {{ new.prev|default_if_none:"" }}
                   </td>
                   <td>
-                    May 15, 2015
+                    {{ new.get_minus|default_if_none:""  }}
+                  </td> 
+                  <td>
+                    <a href="/" class="btn btn-primary text-white me-0"><i></i>Chart</a>
                   </td>
                 </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face2.jpg" alt="image">
-                  </td>
-                  <td>
-                    Messsy Adam
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $245.30
-                  </td>
-                  <td>
-                    July 1, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face3.jpg" alt="image">
-                  </td>
-                  <td>
-                    John Richards
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $138.00
-                  </td>
-                  <td>
-                    Apr 12, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face4.jpg" alt="image">
-                  </td>
-                  <td>
-                    Peter Meggik
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $ 77.99
-                  </td>
-                  <td>
-                    May 15, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face5.jpg" alt="image">
-                  </td>
-                  <td>
-                    Edward
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $ 160.25
-                  </td>
-                  <td>
-                    May 03, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face6.jpg" alt="image">
-                  </td>
-                  <td>
-                    John Doe
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $ 123.21
-                  </td>
-                  <td>
-                    April 05, 2015
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-1">
-                    <img src="../../images/faces/face7.jpg" alt="image">
-                  </td>
-                  <td>
-                    Henry Tom
-                  </td>
-                  <td>
-                    <div class="progress">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td>
-                    $ 150.00
-                  </td>
-                  <td>
-                    June 16, 2015
-                  </td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -224,6 +196,361 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(function() {
+          $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+              }, function(start, end, label) {
+                $('.news-table > tbody').empty(); 
+                $('.news-table > tbody').html('<div class="spin"></div>');
+                $(".select-news option[value='Economic releases']").prop('selected', 'selected');
+                
+                $('.etalon-news-head').hide();
+                $('.news-head').show();
+
+                $.ajax({
+                    data: {
+                        'date_from': start.format('YYYY-MM-DD'),
+                        'date_to': end.format('YYYY-MM-DD'),
+                        },
+                    type: "GET",
+                    url:  "/calendar/search_date/",
+
+                    success: function (response) {
+                      $('.news-table > tbody').empty();
+                      var news = jQuery.parseJSON(response);
+
+                      var prev_day = 0
+
+                      jQuery.each(news, function(key, item) {
+                        var day = item.fields.date
+                        var day_name = moment(day).format('dddd');
+                        var date = moment(day).format('D.MM.YYYY')
+                        var dev = item.fields.actual - item.fields.estimate
+                        if (item.fields.estimate != null){
+                        } else {
+                          item.fields.estimate = ''
+                        }
+                        if (item.fields.actual != null){
+                        } else {
+                          item.fields.actual = ''
+                        }
+                        if (prev_day != day){
+                            $('.news-table > tbody').append(`
+                            <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="8"><h5>${date} ${day_name}</h5></td></tr>
+                            `)
+                          prev_day = day
+                        };
+                        $('.news-table > tbody').append(`
+                        <tr onmouseover="this.style.cursor='pointer'" id="${item.pk}">
+                          <td>${item.fields.time}</td>
+                          <td>${item.fields.event}</td>
+                          <td>${item.fields.actual}</td>
+                          <td>${item.fields.estimate}</td>
+                          <td>${item.fields.prev}</td>
+                          <td>${dev.toFixed(1)}</td>
+                          <td>
+                            <a href="/" class="btn btn-primary text-white me-0"><i></i>Chart</a>
+                          </td>
+                        </tr>
+                        `)
+                      });
+                    },
+                      error: function(){
+                      console.log("Error");
+                    }
+                })
+              });
+            });
+          });
+
+
+
+    // Date buttons
+    $(document).ready(function () {
+      $('.search-date').click(function () {
+
+        const timezones = Intl.supportedValuesOf('timeZone')
+
+
+        var search_date = $(this).attr('id');
+        var csrftoken = $( "input[name='csrfmiddlewaretoken']" ).val();
+        $(".select-news option[value='Economic releases']").prop('selected', 'selected');
+        $('.news-table > tbody').empty();
+
+        $('.news-table > tbody').html('<div class="spin"></div>');
+        
+        $('.etalon-news-head').hide();  
+        $('.news-head').show();
+
+
+        var timezone = $('.timezones').find("option:selected").val();
+
+        function convertTZ(date, tzString) {
+           return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+        }
+
+        $.ajax({
+            data: {
+                'search_date': search_date,
+                'csrfmiddlewaretoken': csrftoken,
+                },
+            type: "GET",
+            url:  "/calendar/search_date/",
+
+            success: function (response) {
+
+                  $('.news-table > tbody').empty();
+
+                  var news = jQuery.parseJSON(response);
+                  var prev_day = 0
+
+                  jQuery.each(news, function(key, item) {
+
+                    var raw_day = item.fields.date
+                    var raw_time = item.fields.time
+                    
+                    var dateTime = moment(`${raw_day} ${raw_time}`, 'YYYY-MM-DD HH:mm ZZ').format();
+                    // var day = dateTime.toLocaleString("en-US", {timeZone: timezone});  
+                    day = convertTZ(dateTime, timezone)
+                    var day_name = moment(day).format('dddd');
+                    var date = moment(day).format('D.MM.YYYY')
+                    var time = moment(day).format('HH:mm')
+                    
+
+                    var dev = item.fields.actual - item.fields.estimate
+
+                    if (item.fields.estimate != null){
+                    } else {
+                      item.fields.estimate = ''
+                    }
+                    if (item.fields.actual != null){
+                    } else {
+                      item.fields.actual = ''
+                    }
+                    if (prev_day != day_name){
+                        $('.news-table > tbody').append(`
+                        <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>
+                        `)
+                      prev_day = day_name
+                    };
+
+                    $('.news-table > tbody').append(`
+                    <tr  onmouseover="this.style.cursor='pointer'" id="${item.pk}">
+                      <td>${time}</td>
+                      <td>${item.fields.event}</td>
+                      <td>${item.fields.actual}</td>
+                      <td>${item.fields.estimate}</td>
+                      <td>${item.fields.prev}</td>
+                      <td>${dev.toFixed(1)}</td>
+                      <td>
+                        <a href="/" class="btn btn-primary text-white me-0"><i></i>Chart</a>
+                      </td>
+                    </tr>
+                    `)
+                  });
+                }
+            ,
+            error: function(){
+                console.log("Error");
+            }
+        })
+    });
+  });
+
+
+  $(document).ready(function () {
+    $('.select-news').change(function () {
+      var news_select = $(this).find("option:selected").val();
+      $('.news-table > tbody').html('<div class="spin"></div>');
+      
+
+      $.ajax({
+          data: {
+              'news': news_select,
+              },
+          type: "GET",
+          url: "/calendar/select_news/",
+          success: function (response) {
+              if (news_select == 'Economic releases'){
+                $('.news-table > tbody').empty();
+                $('.etalon-news-head').hide();
+                $('.news-head').show();
+
+                
+                var news = jQuery.parseJSON(response);
+                var prev_day = 0
+
+                jQuery.each(news, function(key, item) {
+                  var day = item.fields.date
+                  var day_name = moment(day).format('dddd');
+                  var date = moment(day).format('D.MM.YYYY')
+                  var time = item.fields.time
+                  var pure_time = time.split(':')[0] + ':' + time.split(':')[1];
+                  var dev = item.fields.actual - item.fields.estimate
+
+                  if (item.fields.estimate != null){
+                    } else {
+                      item.fields.estimate = ''
+                    }
+                    if (item.fields.actual != null){
+                    } else {
+                      item.fields.actual = ''
+                    }
+                  if (prev_day != day){
+                      $('.news-table > tbody').append(`
+                      <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>`)
+                      prev_day = day
+                    };
+                  $('.news-table > tbody').append(
+                  `<tr  onmouseover="this.style.cursor='pointer'" id="${item.pk}">
+                      <td>${pure_time}</td>
+                      <td>${item.fields.event}</td>
+                      <td>${item.fields.actual}</td>
+                      <td>${item.fields.estimate}</td>
+                      <td>${item.fields.prev}</td>
+                      <td>${dev.toFixed(1)}</td>
+                      <td>
+                        <a href="/" class="btn btn-primary text-white me-0"><i></i>Chart</a>
+                      </td>
+                    </tr>`)
+                });
+              }
+              if(news_select == 'Etalon news') {
+                $('.news-table > tbody').empty();
+                $('.news-head').hide();
+                $('.etalon-news-head').show();
+
+                var news = jQuery.parseJSON(response);
+                jQuery.each(news, function(key, item) {
+                  $('.news-table > tbody').append(
+                  `<tr>
+                      <td colspan="6">${item.fields.globalreport}</td>
+                    </tr>`)
+                });
+              }},
+                error: function(){
+                  console.log("Error");
+                }
+              })
+          });
+        });
+
+
+    $(document).ready(function(){
+      $('.news-table').delegate('tr','click',function() {
+
+        news_id = $(this).attr('id');
+
+        var timezone = $('.timezones').find("option:selected").val();
+
+        function convertTZ(date, tzString) {
+           return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+        }
+
+        if (news_id){
+
+          $('.news-table > tbody').empty();
+          $('.news-table > tbody').html('<div class="spin"></div>');
+
+          $('.etalon-news-head').hide();
+          $('.news-head').show();
+
+          $.ajax({
+            data: {
+                'news_id': news_id,
+                },
+            type: "GET",
+            url: "/calendar/get_news/",
+            success: function (response) {
+              $('.news-table > tbody').empty();
+              var news = jQuery.parseJSON(response);
+
+              var prev_day = 0
+              jQuery.each(news, function(key, item) {
+
+                    var raw_day = item.fields.date
+                    var raw_time = item.fields.time
+                    var dateTime = moment(`${raw_day} ${raw_time}`, 'YYYY-MM-DD HH:mm ZZ').format();
+                    // var day = dateTime.toLocaleString("en-US", {timeZone: timezone});  
+                    day = convertTZ(dateTime, timezone)
+                    var day_name = moment(day).format('dddd');
+                    var date = moment(day).format('D.MM.YYYY')
+                    var time = moment(day).format('HH:mm')
+
+                    if (item.fields.estimate != null){
+                    } else {
+                      item.fields.estimate = ''
+                    }
+                    if (item.fields.actual != null){
+                    } else {
+                      item.fields.actual = ''
+                    }
+                    if (prev_day != day_name){
+                        $('.news-table > tbody').append(`
+                        <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>`)
+                        prev_day = day_name
+                      };
+                    $('.news-table > tbody').append(
+                    `<tr>
+                        <td>${time}</td>
+                        <td>${item.fields.event}</td>
+                        <td>${item.fields.actual}</td>
+                        <td>${item.fields.estimate}</td>
+                        <td>${item.fields.prev}</td>
+                        <td>${item.fields.prev}</td>
+                        <td>
+                          <a href="/" class="btn btn-primary text-white me-0"><i></i>Chart</a>
+                        </td>
+                      </tr>`)
+                  });
+              },
+              error: function(){
+                console.log('error');
+              }
+            });
+        }
+    });
+  });
+
+  $(document).ready(function () {
+    var fullDate = new Date()
+    var day_name = moment(fullDate).format('dddd');
+    var date = moment(fullDate).format('D.MM.YYYY')
+    
+    $('#today-tr').html(`<td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name} </h5></tr>`);
+  });
+
+
+
+
+
+  $(document).ready(function () {
+    $('.timezones').change(function () {
+      var timezone = $(this).find("option:selected").val();
+      
+      $.ajax({
+            data: {
+                'timezone': timezone,
+                },
+            type: "GET",
+            url: "/calendar/set_timezone/",
+            success: function (response) {
+              console.log('ok');
+            },
+            error: function (response){
+              console.log('error');
+            }
+          });
+    })
+  });
+
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  
   <script src="{{ ASSETS_ROOT }}/js/dashboard.js"></script>
   <script src="{{ ASSETS_ROOT }}/js/Chart.roundedBarCharts.js"></script>
 
