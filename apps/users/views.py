@@ -5,24 +5,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import User
 from apps.home.models import Module
 from django.contrib.auth.models import Group
-from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.dispatch import receiver
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
 from apps.home.views import module_access
 from django.shortcuts import get_object_or_404
-
-
-@receiver(user_logged_in)
-def got_online(sender, user, request, **kwargs):    
-    user.is_online = True
-    user.save()
-
-
-@receiver(user_logged_out)
-def got_offline(sender, user, request, **kwargs):   
-    user.is_online = False
-    user.save()
 
 
 @login_required(login_url="/login/")
@@ -102,6 +88,7 @@ def logs(request):
 
 @login_required(login_url="/login/")
 def profile(request):
+    print(request.user.last_seen())
     if request.method == "POST":
         msg = None
         user = User.objects.get(id = request.user.id)
@@ -109,6 +96,7 @@ def profile(request):
 
         if len(request.FILES) != 0:
             user.profile_image = request.FILES['profile_image']
+            user.save()
         raw_password = request.POST.get("password1")
         user_form = EditProfileForm(request.POST, instance=user)
 

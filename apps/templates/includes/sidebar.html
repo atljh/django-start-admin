@@ -1,15 +1,14 @@
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
+        <ul class="nav modules">
+          <li class="nav-item dashboard">
             <a class="nav-link" href="{% url 'home' %}">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-
           <li class="nav-item nav-category">Пользователи</li>
-          <li class="nav-item">
+          <li class="nav-item users">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-floor-plan"></i>
               <span class="menu-title">Пользователи</span>
@@ -22,19 +21,55 @@
                 <li class="nav-item"> <a class="nav-link" href="{% url 'logs' %}">Логи</a></li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item nav-category">Модули</li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'calendar' %}">
-              <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">Календарь</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'charts' %}">
-              <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Чарты</span>
-            </a>
+            <li class="nav-item nav-category calendar-charts">Модули</li>
+            <li class="nav-item calendar">
+              <a class="nav-link" href="{% url 'calendar' %}">
+                <i class="menu-icon mdi mdi-table"></i>
+                <span class="menu-title">Календарь</span>
+              </a>
+            </li>
+            <li class="nav-item charts">
+              <a class="nav-link" href="{% url 'charts' %}">
+                <i class="menu-icon mdi mdi-chart-line"></i>
+                <span class="menu-title">Чарты</span>
+              </a>
+            </li>
           </li>
         </ul>
       </nav>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      var modules = ['Dashboard', 'Users', 'Calendar', 'Charts'];
+
+        jQuery.each(modules, function(key, item) {
+          $.ajax({
+                data: {
+                    'module': item,
+                    },
+                type: "GET",
+                url:  "/get_module/",
+                
+
+                success: function (response) { 
+                  if (response.error == 'Dashboard'){
+                    $('.modules').find('.dashboard').remove();
+                  }
+                  if (response.error == 'Users'){
+                    $('.modules').find('.users').remove();
+                  }
+                  if (response.error == 'Calendar'){
+                    $('.modules').find('.calendar').remove();
+                  }
+                  if (response.error == 'Charts'){
+                    $('.modules').find('.charts').remove();
+                  }
+                },
+
+                error: function(){
+                    console.log("Error");
+                }
+              });
+            });
+          })
+</script>

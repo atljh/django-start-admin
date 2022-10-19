@@ -35,10 +35,11 @@
                   <tr>
                     <td><a href="/user/{{ user.id }}/" class="row-link">{{ user.username }}</a></td>
                     <td>{{ user.email }}</td>
-                    {% if user.is_online == False %}
-                    <td class="text-danger">Offline</td>
-                    {% else %}
+                    {% if user.online %}
                     <td class="text-success">Online</td>
+                    {% else %}
+                    <td class="text-danger">Offline</td>
+
                     {% endif %}
                     {% if user.groups.first.name == 'Administrator' %}
                     <td><label class="badge badge-danger">{{ user.groups.first.name }}</label></td>

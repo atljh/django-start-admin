@@ -1,11 +1,17 @@
+from re import S
 from django.db import models
-from django.utils import timezone
+from django.contrib.auth.models import Group
 
 class Module(models.Model):  
 
     name = models.CharField(max_length=255, blank=True)
     access_level = models.IntegerField(default=1)
 
+    def get_group(self):
+        groups = Group.objects.all()
+        for group in groups:
+            if self.access_level == group.access_level:
+                return group.name
     
     def __str__(self):
         return self.name
@@ -40,5 +46,13 @@ class ReferenceNews(models.Model):
     globalreport = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.news_id
+        return str(self.news_id)
 
+
+class AuctionTools(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    symbol = models.CharField(max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return self.name

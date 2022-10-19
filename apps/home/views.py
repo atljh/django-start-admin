@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Module
-from .news import get_news, save_news, save_task, get_new_news, update_news, get_references
+from .news import update_news, get_references
 from .models import News, ReferenceNews
 from django.core import serializers
 from itertools import chain
@@ -13,6 +13,14 @@ def module_access(request, module: str) -> bool:
     if request.user.groups.first().access_level >= Module.objects.get(name=module).access_level:
         return True
     return False
+
+
+def get_module(request):
+    module = request.GET.get('module')
+    if request.user.groups.first().access_level >= Module.objects.get(name=module).access_level:
+        return JsonResponse({'ok': f'{module}'})
+    else:
+        return JsonResponse({'error': f'{module}'})
 
 
 @login_required(login_url="/login/")
@@ -28,44 +36,73 @@ def calendar(request):
     if not module_access(request, 'Calendar'):
         return redirect('/login/')
 
+    if request.GET.get('search_date'):
+        data = search_date(request.GET.get('search_date'))
+        return JsonResponse(data, safe=False, status=200)
+
+    if request.GET.get('news_id'):
+        data = get_news_by_id(request.GET.get('news_id'))
+        return JsonResponse(data, safe=False, status=200)
+
+    if request.GET.get('news'):
+        news_id = int(request.GET.get('news'))
+        new = News.objects.get(pk=news_id)
+        news = News.objects.filter(event=new.event)
+        return render(request, 'modules/calendar.html', {'news': news})
+
+    if request.GET.get('timezone'):
+        set_timezone(request.user.id, request.GET.get('timezone'))
+        return JsonResponse({'timezone': request.user.timezone}, status=200)
+
+    if request.GET.get('date_from'):
+        data = search_range(request.GET.get('date_from'), request.GET.get('date_to'))
+        return JsonResponse(data, safe=False, status=200)
+
+    if request.GET.get('select_news'):
+        data = select_news(request.GET.get('select_news'))
+        return JsonResponse(data, safe=False, status=200)
+
+
     news = News.objects.filter(date=date.today())
-    # news = News.objects.all()
+
     context = {
         'news': news,
-        'timezone': request.session.get('timezone'),
+        'timezone': request.user.timezone,
     }
     
     return render(request, 'modules/calendar.html', context=context)
 
 
-def select_news(request):
-    select_news = request.GET.get('news')
+def select_news(select_news):
     if select_news == 'Economic releases':
         news = News.objects.filter(date=date.today())
+
     elif select_news == 'Etalon news':
-        news = ReferenceNews.objects.all()[:10]
+        news = ReferenceNews.objects.all()
+        if len(news) < 1:
+            get_references()
+            news = ReferenceNews.objects.all()
 
     data = serializers.serialize('json', news)
-    return JsonResponse(data, safe=False, status=200)
+    return data
 
 
-def get_selected_news(request):
-    news_id = request.GET.get('news_id')
+def get_news_by_id(news_id):
     try:
         new = News.objects.get(pk=news_id)
-    except Exception:
+    except Exception as exc:
+        print(exc)
         news = []
     else:
         news_same_time = News.objects.filter(date=new.date, time=new.time)
         news_same_event = News.objects.filter(event=new.event).exclude(pk=new.pk).order_by('-date')
         news = list(chain(news_same_time, news_same_event))
+
     data = serializers.serialize('json', news)
-    return JsonResponse(data, safe=False, status=200)
+    return data
 
 
-def search_date(request):
-    search_value = request.GET.get('search_date')
-    news = []
+def search_date(search_value):
 
     if search_value == 'today':
         today = date.today()
@@ -91,53 +128,19 @@ def search_date(request):
         sunday = sunday.strftime('%Y-%m-%d')
         news = update_news(monday, sunday)
 
-    elif request.GET.get('date_from'):
-        date_from = request.GET.get('date_from')
-        date_to = request.GET.get('date_to')
-        news = update_news(date_from, date_to)
-
     data = serializers.serialize('json', news)
-    return JsonResponse(data, safe=False, status=200)
+    return data
 
 
-def set_timezone(request):
-    timezone = request.GET.get('timezone')
-    user = User.objects.get(pk=request.user.pk)
+def search_range(date_from, date_to):
+    news = update_news(date_from, date_to)
+    data = serializers.serialize('json', news)
+    return data
+
+
+def set_timezone(user_id, timezone):
+    user = User.objects.get(pk=user_id)
     user.timezone = timezone
     user.save()
-    return JsonResponse({'response': 'ok'}, status=200)
 
 
-@login_required(login_url="/login/")
-def charts(request):
-    if not module_access(request, 'Charts'):
-        return redirect('/login/')
-    context = {}
-    return render(request, 'modules/charts.html', context=context)
-
-
-
-# @login_required(login_url="/login/")
-# def pages(request):
-#     context = {}
-#     # All resource paths end in .html.
-#     # Pick out the html file name from the url. And load that template.
-#     try:
-
-#         load_template = request.path.split('/')[-1]
-
-#         if load_template == 'admin':
-#             return HttpResponseRedirect(reverse('admin:index'))
-#         context['segment'] = load_template
-
-#         html_template = loader.get_template('home/' + load_template)
-#         return HttpResponse(html_template.render(context, request))
-
-#     except template.TemplateDoesNotExist:
-
-#         html_template = loader.get_template('home/page-404.html')
-#         return HttpResponse(html_template.render(context, request))
-
-#     except:
-#         html_template = loader.get_template('home/page-500.html')
-#         return HttpResponse(html_template.render(context, request))
