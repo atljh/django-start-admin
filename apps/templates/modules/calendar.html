@@ -47,8 +47,16 @@
           <div class="d-flex  align-items-center mb-3">
             {% csrf_token %}
             <h4 class="card-title mb-0" style="border-right-style: solid ;margin-right: 40px; border-right-width: 0px;">Economic Calendar </h4>
-            <input type="text" name="daterange" value="var fullDate = new Date()" />
-            <a class="btn btn-light search-date" style="text-decoration:underline;" id="today" >Today</a>
+            <li class="nav-item d-none d-lg-block">
+              <div class="input-group date datepicker">
+                <span class="input-group-addon input-group-prepend border-right">
+                  <span class="icon-calendar input-group-text calendar-icon"></span>
+                </span>
+                <input name="daterange" type="text" class="form-control">
+              </div>
+            </li>
+            <!-- <input type="text" name="daterange" value="var fullDate = new Date()" /> -->
+            <a class="btn btn-light search-date" style="text-decoration:underline;" id="today">Today</a>
             <a class="btn btn-light search-date" id="tomorrow">Tomorrow</a>
             <a class="btn btn-light search-date" id="this week">This week</a>
             <a class="btn btn-light search-date" id="next week">Next week</a>
@@ -114,7 +122,7 @@
                     {{ new.time|date:'H:i'}}
                   </td>
                   <td>
-                    {{ new.event}}
+                    {{ new.country }} {{ new.event}}
                   </td>
                   {% if new.actual > 0 %}
                   <td class="text-success">
@@ -230,7 +238,7 @@
                         $('.news-table > tbody').append(`
                         <tr onmouseover="this.style.cursor='pointer'" id="${item.pk}">
                           <td>${item.fields.time}</td>
-                          <td>${item.fields.event}</td>
+                          <td>${item.fields.country} ${item.fields.event}</td>
                           <td class=${text_actual}>${item.fields.actual}${arrow}</i></td>
                           <td>${item.fields.estimate}</td>
                           <td>${item.fields.prev}</td>
@@ -325,7 +333,7 @@
                     $('.news-table > tbody').append(`
                     <tr  onmouseover="this.style.cursor='pointer'" id="${item.pk}">
                       <td>${time}</td>
-                      <td>${item.fields.event}</td>
+                      <td>${item.fields.country} ${item.fields.event}</td>
                       <td class=${text_actual}>${item.fields.actual}${arrow}</td>
                       <td>${item.fields.estimate}</td>
                       <td>${item.fields.prev}</td>
@@ -402,7 +410,7 @@
                   $('.news-table > tbody').append(
                   `<tr  onmouseover="this.style.cursor='pointer'" id="${item.pk}">
                       <td>${pure_time}</td>
-                      <td>${item.fields.event}</td>
+                      <td>${item.fields.country} ${item.fields.event}</td>
                       <td class=${text_actual}>${item.fields.actual}${arrow}</td>
                       <td>${item.fields.estimate}</td>
                       <td>${item.fields.prev}</td>
@@ -504,7 +512,7 @@
                     $('.news-table > tbody').append(
                     `<tr>
                         <td>${time}</td>
-                        <td>${item.fields.event}</td>
+                        <td>${item.fields.country} ${item.fields.event}</td>
                         <td class=${text_actual}>${item.fields.actual}</td>
                         <td>${item.fields.estimate}</td>
                         <td>${item.fields.prev}</td>
@@ -614,7 +622,7 @@
                           $('.news-table > tbody').append(`
                           <tr  onmouseover="this.style.cursor='pointer'" id="${item.pk}">
                             <td>${time}</td>
-                            <td>${item.fields.event}</td>
+                            <td>${item.fields.country} ${item.fields.event}</td>
                             <td class=${text_actual}>${item.fields.actual}${arrow}</td>
                             <td>${item.fields.estimate}</td>
                             <td>${item.fields.prev}</td>

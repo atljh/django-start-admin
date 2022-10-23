@@ -31,7 +31,6 @@
             {% if next.date %}
             <a href="/charts/{{next.pk}}/" class="btn btn-primary"><i></i>{{ next.date}}</a>
             {% endif %}
-
             {% else %}
             <input id="datetimepicker" type="text" value="">
             {% endif %}
@@ -74,6 +73,8 @@
 
   <script type="text/javascript">
     function get_chart(){
+      var url = window.location.href;
+      news_id = url.split('/')[4]
       var asset =  $('#dropdownTools').text();
       var horizon =  $('.horizon').text();
       if (horizon == '1s'){
@@ -88,19 +89,19 @@
             'get_chart': asset,
             'horizon': horizon,
             'date': date,
+            'news_id': news_id,
             },
         type: "GET",
         url:  "/charts/",
         
         success: function (response) {
-          var chart_data = jQuery.parseJSON(response);
+          var chart_data = jQuery.parseJSON(response.ticks);
           ohlc =[]
           $.each(chart_data['index'], function(i, str) {
             ohlc.push({x: new Date(str),
                       y: [chart_data['data'][i][0], chart_data['data'][i][1], chart_data['data'][i][2], chart_data['data'][i][3]]});
                       
           })
-          console.log(ohlc)
           max = []
           $.each(chart_data['data'], function(i, str) {
             max.push(chart_data['data'][i][1])
