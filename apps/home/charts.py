@@ -27,16 +27,23 @@ def charts(request, news_id=None):
         return JsonResponse({'tools': data}, safe=False, status=200)
 
     if request.GET.get('get_chart'):
-        horizon = request.GET.get('horizon')
-        asset_name = request.GET.get('get_chart', 'M1')
-        if request.GET.get('date'):
-            date = datetime.strptime(request.GET.get('date'), "%d.%m.%Y %H:%M")
+        if request.GET.get('news_id'):
+            news = get_object_or_404(News, pk=request.GET.get('news_id'))
+            horizon = request.GET.get('horizon')
+            asset_name = request.GET.get('get_chart', 'M1')
+            asset = AuctionTools.objects.get(name=asset_name).symbol
+            ticks = mass_import(asset, horizon, news.date.year, news.date.month, news.date.day, news.time.hour, news.time.minute)
         else:
-            date = datetime.now()
-        asset = AuctionTools.objects.get(name=asset_name).symbol
-        ticks = mass_import(asset, horizon, date.year, date.month, date.day, date.hour, date.minute)
-
-        return JsonResponse(ticks, safe=False)
+            horizon = request.GET.get('horizon')
+            asset_name = request.GET.get('get_chart', 'M1')
+            if request.GET.get('date'):
+                date = datetime.strptime(request.GET.get('date'), "%d.%m.%Y %H:%M")
+            else:
+                date = datetime.now()
+            asset = AuctionTools.objects.get(name=asset_name).symbol
+            ticks = mass_import(asset, horizon, date.year, date.month, date.day, date.hour, date.minute)
+            
+        return JsonResponse({'ticks': ticks}, safe=False)
 
     if not news_id: 
         return render(request, 'modules/charts.html')

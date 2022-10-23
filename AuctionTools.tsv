@@ -1,0 +1,142 @@
+BABA	Alibaba Group Holding Ltd.	BABA.N
+GOOG	Alphabet Inc. ClassA (Google)	GOOG.OQ
+XAL	Aluminium	XAL.ecn
+AMZN	Amazon.com, Inc.	AMZN.OQ
+AIG	American International Group Inc.	AIG.N
+AAPL	Apple Inc.	AAPL.OQ
+AUS200	Australia 200	AUS200
+AUDCAD	Australian Dollar vs Canadian Dollar	AUDCAD
+AUDJPY	Australian Dollar vs Japanese Yen	AUDJPY
+AUDNZD	Australian Dollar vs New Zealand Dollar	AUDNZD
+AUDCHF	Australian Dollar vs Swiss Franc	AUDCHF
+AUDUSD	Australian Dollar vs US Dollar	AUDUSD
+BAC	Bank of America Corp.	BAC.N
+XBTUSD	Bitcoin	XBTUSD.lmx
+XBNUSD	Bitcoin Cash	XBNUSD.lmx
+BA	Boeing Company	BA.N
+GBPDKK	British Pound vs Danish Krone	GBPDKK
+GBPHKD	British Pound vs Hong Kong Dollar	GBPHKD
+GBPHUF	British Pound vs Hungarian Forint	GBPHUF
+GBPJPY	British Pound vs Japanese Yen	GBPJPY
+GBPMXN	British Pound vs Mexican Pesos	GBPMXN
+GBPNOK	BRitish Pound vs Norwegian Kroner	GBPNOK
+GBPSGD	British Pound vs Singapore Dollar	GBPSGD
+GBPZAR	British Pound vs South African Rad	GBPZAR
+GBPSEK	British Pound vs Swedish krona	GBPSEK
+GBPTRY	British Pound vs Turkish lira	GBPTRY
+GBPPLN	Brtish Pound vs Polish Zlotje	GBPPLN
+NZDCAD	Canadian Dollar vs Canadian Dollar	NZDCAD
+CADJPY	Canadian Dollar vs Japanese Yen	CADJPY
+CADCHF	Canadian Dollar vs Swiss Franc	CADCHF
+CVX	Chevron Corp.	CVX.N
+CSCO	Cisco Systems, Inc.	CSCO.OQ
+COCOA	Cocoa	COCOA.ecn
+COFFEE	Coffee	COFFEE.ecn
+XCU	Copper	XCU.ecn
+CORN	Corn	CORN.ecn
+COTTON	Cotton	COTTON.ecn
+EBAY	Ebay Inc.	EBAY.OQ
+XETUSD	Ethereum	XETUSD.lmx
+EURAUD	Euro vs Australian Dollar	EURAUD
+EURCAD	Euro vs Canadian Dollar	EURCAD
+EURCZK	Euro vs Czech koruna	EURCZK
+EURDKK	Euro vs Danish Krone	EURDKK
+EURGBP	Euro vs Great Britain Pound	EURGBP
+EURHKD	Euro vs Hong Kong Dollar	EURHKD
+EURHUF	Euro vs Hungarian Forint	EURHUF
+EURJPY	Euro vs Japanese Yen	EURJPY
+EURMXN	Euro vs Mexican Pesos	EURMXN
+EURNZD	Euro vs New Zealand Dollar	EURNZD
+EURNOK	Euro vs Norwegian Kroner	EURNOK
+EURPLN	Euro vs Polish Zloty	EURPLN
+EURRON	Euro vs Romanian Leu	EURRON
+EURRUB	Euro vs Russian Ruble	EURRUB
+EURSGD	Euro vs Singapore Dollar	EURSGD
+EURZAR	Euro vs South African Rand	EURZAR
+EURSEK	Euro vs Swedish Kroner	EURSEK
+EURCHF	Euro vs Swiss Franc	EURCHF
+EURTRY	Euro vs Turkish lira	EURTRY
+EURUSD	Euro vs US Dollar	EURUSD
+STOXX50	Europe 50	STOXX50
+XOM	Exxon Mobil Corp.	XOM.N
+FB	Facebook, Inc.	FB.OQ
+FDX	FedEx Corp.	FDX.N
+FCHI40	France 40	FCHI40
+GE	General Electric Co.	GE.N
+GM	General Motors Co.	GM.N
+GDAXI	Germany 30	GDAXI
+XAUAUD	Gold vs Australian Dollar	XAUAUD
+XAUEUR	Gold vs Euro	XAUEUR
+XAUUSD	Gold vs US Dollar	XAUUSD
+GS	Goldman Sachs Group Inc.	GS.N
+GBPAUD	Great Britain Pound vs Australian Dollar	GBPAUD
+GBPCAD	Great Britain Pound vs Canadian Dollar	GBPCAD
+GBPCZK	Great Britain Pound vs Czech koruna	GBPCZK
+GBPCHF	Great Britain Pound vs Swiss Franc	GBPCHF
+GBPNZD	Great Britan Pound vs New Zealand Dollar	GBPNZD
+GBPUSD	Great Britan Pound vs US Dollar	GBPUSD
+HLT	Hilton Hotels Corp.	HLT.N
+HSI50	Hong Kong 50	HSI50
+HPQ	HP Inc (Hewlett-Packard)	HPQ.N
+ILMN	Illumina, Inc.	ILMN.OQ
+INTC	Intel Corp.	INTC.OQ
+IBM	International Business Machines Corp.	IBM.N
+J225	Japan Stock Index “Nikkei 225”	J225
+JNJ	Johnson & Johnson	JNJ.N
+JPM	JPMorgan Chase & Co.	JPM.N
+XPB	Lead	XPB.ecn
+XLCUSD	Litecoin	XLCUSD.lmx
+UK100	London Stock Exchange Index“FTSE 100”	UK100
+MA	Mastercard Inc. Cl A	MA.N
+MCD	McDonald's Corp.	MCD.N
+MSFT	Microsoft Corp.	MSFT.OQ
+XNGUSD	Natural Gas vs US Dollar	XNGUSD.lmx
+NFLX	Netflix, Inc.	NFLX.OQ
+NZDSGD	New Zealand dollar  vs Singapore Dollar	NZDSGD
+NZDCHF	New Zealand Dollar vs Swiss Franc	NZDCHF
+NZDUSD	New Zealand Dollar vs US Dollar	NZDUSD
+NZDJPY	New Zealand vs Japanise Yen	NZDJPY
+XNI	Nickel	XNI.ecn
+NOKSEK	Norwegian Krona vs Swedish Krona	NOKSEK
+ORCL	Oracle Corp.	ORCL.N
+XPDUSD	Palladium vs US Dollar	XPDUSD
+PFE	Pfizer Inc.	PFE.N
+XPTUSD	Platinum vs US Dollar	XPTUSD
+PG	Procter & Gamble Co.	PG.N
+QCOM	QUALCOMM, Inc.	QCOM.OQ
+XRPUSD	Ripple	XRPUSD.lmx
+XAGAUD	Silver vs Australian Dollar	XAGAUD
+XAGUSD	Silver vs US Dollar	XAGUSD
+SOYBEAN	Soybean	SOYBEAN.ecn
+SPN35	Spain 35	SPN35.lmx
+SPX500	SPX 500	SPX500
+SUGAR	Sugar	SUGAR.ecn
+CHFJPY	Swiss Frank vs Japanese Yen	CHFJPY
+TSLA	Tesla, Inc.	TSLA.OQ
+TEVA	Teva Pharmaceutical Industries Ltd.	TEVA.P
+KO	The Coca-Cola Co.	KO.N
+TWTR	Twitter Inc	TWTR.N
+XBOUSD	UK Brent Spot US Dollar	XBOUSD.lmx
+USDCAD	US Dollar vs Canadian Dollar	USDCAD
+USDCZK	US Dollar vs Czech Koruna	USDCZK
+USDDKK	US Dollar vs Danish Krone	USDDKK
+USDHKD	US Dollar vs Hong Kong Dollar	USDHKD
+USDHUF	US Dollar vs Hungarian Forint	USDHUF
+USDJPY	US Dollar vs Japanese Yen	USDJPY
+USDMXN	US Dollar vs Mexican Peso	USDMXN
+USDNOK	US Dollar vs Norwegian Krone	USDNOK
+USDCNH	US Dollar vs Offshore Renminbi	USDCNH
+USDPLN	US Dollar vs Polish Zloty	USDPLN
+USDRON	US dollar vs Romanian Leu	USDRON
+USDRUB	US Dollar vs Russian Ruble	USDRUB
+USDSGD	US Dollar vs Singapore Dollar	USDSGD
+USDZAR	US Dollar vs South African Rand	USDZAR
+USDSEK	US dollar vs Swedish krona	USDSEK
+USDCHF	US Dollar vs Swiss Franc	USDCHF
+USDTRY	US Dollar vs Turkish Lira	USDTRY
+NDX100	US Tech 100	NDX100
+WS30	Wall Street 30	WS30
+WHEAT	Wheat	WHEAT.ecn
+XTIUSD	XTI vs US Dollar	XTIUSD.lmx
+XTUUSD	XTU vs US Dollar	XTUUSD.lmx
+XZN	Zinc	XZN.ecn
