@@ -17,6 +17,7 @@ venv
 
 # other
 .DS_Store
+.env
 
 # javascript
 package-lock.json
@@ -32,7 +33,6 @@ apps/static/assets/.temp
 apps/home/migrations/*
 
 
-.env
 migrations
 .idea
 features
@@ -40,5 +40,3 @@ __pycache__/
 */__pycache__/
 *.py[cod]
 .pyc
-main-templates
-.gitignore
