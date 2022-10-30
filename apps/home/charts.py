@@ -1,6 +1,5 @@
 from .metatrader import mass_import
-from datetime import date, datetime, timedelta
-
+from datetime import date, datetime
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -14,9 +13,11 @@ from .views import module_access
 
 @login_required(login_url="/login/")
 def charts(request, news_id=None):
+
     if not module_access(request, 'Charts'):
         return redirect('/login/')
     
+
     if request.GET.get('get_tools'):
         tools = AuctionTools.objects.all()
         if len(tools) < 1:
@@ -38,6 +39,7 @@ def charts(request, news_id=None):
             asset_name = request.GET.get('get_chart', 'M1')
             if request.GET.get('date'):
                 date = datetime.strptime(request.GET.get('date'), "%d.%m.%Y %H:%M")
+
             else:
                 date = datetime.now()
             asset = AuctionTools.objects.get(name=asset_name).symbol

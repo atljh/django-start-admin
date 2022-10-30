@@ -124,19 +124,22 @@
                   <td>
                     {{ new.country }} {{ new.event}}
                   </td>
-                  {% if new.actual > 0 %}
-                  <td class="text-success">
-                    {{ new.actual|default_if_none:""|floatformat:1 }}
-                    <i class="mdi mdi-arrow-up"></i>
-
-                  </td>
+                  {% if new.actual > new.estimate %}
+                    <td class="text-success">
+                      {{ new.actual|default_if_none:""|floatformat:1 }}
+                      <i class="mdi mdi-arrow-up"></i>
+                    </td>
+                  {% elif not new.estimate %}
+                    <td class="text-success">
+                      {{ new.actual|default_if_none:""|floatformat:1 }}
+                    </td>
                   {% else %}
-                  <td class="text-danger">
-                    {{ new.actual|default_if_none:""|floatformat:1 }}
-                    {% if new.actual %}
-                    <i class="mdi mdi-arrow-down"></i>
-                    {%else%}{%endif%}
-                  </td>
+                    <td class="text-danger">
+                      {{ new.actual|default_if_none:""|floatformat:1 }}
+                      {% if new.actual %}
+                      <i class="mdi mdi-arrow-down"></i>
+                      {%else%}{%endif%}
+                    </td>
                   {% endif %}
                   <td>
                     {{ new.estimate|default_if_none:""|floatformat:1}}
@@ -189,7 +192,6 @@
                 $('.news-table > tbody').empty(); 
                 $('.news-table > tbody').html('<div class="spin"></div>');
                 $(".select-news option[value='Economic releases']").prop('selected', 'selected');
-                
                 $('.etalon-news-head').hide();
                 $('.news-head').show();
 
@@ -210,25 +212,28 @@
                       jQuery.each(news, function(key, item) {
                         var day = item.fields.date
                         var day_name = moment(day).format('dddd');
-                        var date = moment(day).format('D.MM.YYYY')
+                        var date = moment(day).format('D.MM.YYYY');
+                        var time = moment(day).format('HH:mm');
+                        
                         var dev = item.fields.actual - item.fields.estimate
-                        if (item.fields.estimate != null){
-                        } else {
-                          item.fields.estimate = ''
-                        }
-                        if (item.fields.actual != null){
-                        } else {
-                          item.fields.actual = ''
-                          arrow = ''
-                        }
-                        if (item.fields.actual > 0){
-                          var text_actual="text-success"
-                          var arrow = '<i class="mdi mdi-arrow-up"></i>'
-                        } if (item.fields.actual < 0){
+
+                        if (item.fields.actual != null && item.fields.actual > item.fields.estimate){
+                        var text_actual="text-success"
+                        var arrow = '<i class="mdi mdi-arrow-up"></i>'
+                        }if (item.fields.actual != null && item.fields.actual < item.fields.estimate){
                           var text_actual="text-danger"
                           var arrow = '<i class="mdi mdi-arrow-down"></i>'
+                        }if (item.fields.actual == item.fields.estimate){
+                          var text_actual="text-success"
+                          var arrow = ''
+                        }if (item.fields.actual == null){
+                          item.fields.actual = ''
+                          var arrow = ''
+                        }if (item.fields.estimate == null){
+                          item.fields.estimate = ''
+                          var arrow = ''
                         }
-                        
+
                         if (prev_day != day){
                             $('.news-table > tbody').append(`
                             <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="8"><h5>${date} ${day_name}</h5></td></tr>
@@ -237,7 +242,7 @@
                         };
                         $('.news-table > tbody').append(`
                         <tr onmouseover="this.style.cursor='pointer'" id="${item.pk}">
-                          <td>${item.fields.time}</td>
+                          <td>${time}</td>
                           <td>${item.fields.country} ${item.fields.event}</td>
                           <td class=${text_actual}>${item.fields.actual}${arrow}</i></td>
                           <td>${item.fields.estimate}</td>
@@ -307,22 +312,23 @@
 
                     var dev = item.fields.actual - item.fields.estimate
 
-                    if (item.fields.estimate != null){
-                    } else {
-                      item.fields.estimate = ''
-                    }
-                    if (item.fields.actual != null){
-                    } else {
-                      item.fields.actual = ''
-                      arrow = ''
-                    }
-                    if (item.fields.actual > 0){
-                      var text_actual="text-success"
-                      var arrow = '<i class="mdi mdi-arrow-up"></i>'
-                    } if (item.fields.actual < 0){
+                    if (item.fields.actual != null && item.fields.actual > item.fields.estimate){
+                    var text_actual="text-success"
+                    var arrow = '<i class="mdi mdi-arrow-up"></i>'
+                    }if (item.fields.actual != null && item.fields.actual < item.fields.estimate){
                       var text_actual="text-danger"
                       var arrow = '<i class="mdi mdi-arrow-down"></i>'
-                    } 
+                    }if (item.fields.actual == item.fields.estimate){
+                      var text_actual="text-success"
+                      var arrow = ''
+                    }if (item.fields.actual == null){
+                      item.fields.actual = ''
+                      var arrow = ''
+                    }if (item.fields.estimate == null){
+                      item.fields.estimate = ''
+                      var arrow = ''
+                    }
+                    
                     if (prev_day != day_name){
                         $('.news-table > tbody').append(`
                         <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>
@@ -380,27 +386,27 @@
                   var day = item.fields.date
                   var day_name = moment(day).format('dddd');
                   var date = moment(day).format('D.MM.YYYY')
-                  var time = item.fields.time
-                  var pure_time = time.split(':')[0] + ':' + time.split(':')[1];
+                  var time = moment(day).format('HH:mm')
+
                   var dev = item.fields.actual - item.fields.estimate
 
-                  if (item.fields.estimate != null){
-                    } else {
-                      item.fields.estimate = ''
-                    }
-                  if (item.fields.actual != null){
-                  } else {
-                    item.fields.actual = ''
-                  }
-                  if (item.fields.actual > 0){
+                  if (item.fields.actual != null && item.fields.actual > item.fields.estimate){
                     var text_actual="text-success"
                     var arrow = '<i class="mdi mdi-arrow-up"></i>'
-                  } if (item.fields.actual < 0){
-                    var text_actual="text-danger"
-                    var arrow = '<i class="mdi mdi-arrow-down"></i>'
-                  } else {
-                    var arrow = ''
-                  }
+                    }if (item.fields.actual != null && item.fields.actual < item.fields.estimate){
+                      var text_actual="text-danger"
+                      var arrow = '<i class="mdi mdi-arrow-down"></i>'
+                    }if (item.fields.actual == item.fields.estimate){
+                      var text_actual="text-success"
+                      var arrow = ''
+                    }if (item.fields.actual == null){
+                      item.fields.actual = ''
+                      var arrow = ''
+                    }if (item.fields.estimate == null){
+                      item.fields.estimate = ''
+                      var arrow = ''
+                    }
+                  
                   if (prev_day != day){
                       $('.news-table > tbody').append(`
                       <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>`)
@@ -409,7 +415,7 @@
 
                   $('.news-table > tbody').append(
                   `<tr  onmouseover="this.style.cursor='pointer'" id="${item.pk}">
-                      <td>${pure_time}</td>
+                      <td>${time}</td>
                       <td>${item.fields.country} ${item.fields.event}</td>
                       <td class=${text_actual}>${item.fields.actual}${arrow}</td>
                       <td>${item.fields.estimate}</td>
@@ -488,22 +494,26 @@
                     var day_name = moment(day).format('dddd');
                     var date = moment(day).format('D.MM.YYYY')
                     var time = moment(day).format('HH:mm')
+
                     var dev = item.fields.actual - item.fields.estimate
 
-
-                    if (item.fields.estimate != null){
-                    } else {
-                      item.fields.estimate = ''
-                    }
-                    if (item.fields.actual != null){
-                    } else {
-                      item.fields.actual = ''
-                    }
-                    if (item.fields.actual > 0){
-                      var text_actual="text-success"
-                    } else {
+                    if (item.fields.actual != null && item.fields.actual > item.fields.estimate){
+                    var text_actual="text-success"
+                    var arrow = '<i class="mdi mdi-arrow-up"></i>'
+                    }if (item.fields.actual != null && item.fields.actual < item.fields.estimate){
                       var text_actual="text-danger"
+                      var arrow = '<i class="mdi mdi-arrow-down"></i>'
+                    }if (item.fields.actual == item.fields.estimate){
+                      var text_actual="text-success"
+                      var arrow = ''
+                    }if (item.fields.actual == null){
+                      item.fields.actual = ''
+                      var arrow = ''
+                    }if (item.fields.estimate == null){
+                      item.fields.estimate = ''
+                      var arrow = ''
                     }
+
                     if (prev_day != day_name){
                         $('.news-table > tbody').append(`
                         <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>`)
@@ -513,7 +523,7 @@
                     `<tr>
                         <td>${time}</td>
                         <td>${item.fields.country} ${item.fields.event}</td>
-                        <td class=${text_actual}>${item.fields.actual}</td>
+                        <td class=${text_actual}>${item.fields.actual}${arrow}</td>
                         <td>${item.fields.estimate}</td>
                         <td>${item.fields.prev}</td>
                         <td>${dev.toFixed(1)}</td>  
@@ -544,7 +554,7 @@
 
 
   $(document).ready(function () {
-    $('.timezone').click(function () {
+    $('.timezone').click(function () {  
       var timezone = $(this).attr('value')
       $('.selected-timezone').text(timezone)
 
@@ -595,23 +605,23 @@
 
                           var dev = item.fields.actual - item.fields.estimate
 
-                          if (item.fields.estimate != null){
-                          } else {
-                            item.fields.estimate = ''
-                          }
-                          if (item.fields.actual != null){
-                          } else {
-                            item.fields.actual = ''
-                          }
-                          if (item.fields.actual > 0){
-                            var text_actual="text-success"
-                            var arrow = '<i class="mdi mdi-arrow-up"></i>'
-                          } if (item.fields.actual < 0){
+                          if (item.fields.actual != null && item.fields.actual > item.fields.estimate){
+                          var text_actual="text-success"
+                          var arrow = '<i class="mdi mdi-arrow-up"></i>'
+                          }if (item.fields.actual != null && item.fields.actual < item.fields.estimate){
                             var text_actual="text-danger"
                             var arrow = '<i class="mdi mdi-arrow-down"></i>'
-                          } else {
+                          }if (item.fields.actual == item.fields.estimate){
+                            var text_actual="text-success"
+                            var arrow = ''
+                          }if (item.fields.actual == null){
+                            item.fields.actual = ''
+                            var arrow = ''
+                          }if (item.fields.estimate == null){
+                            item.fields.estimate = ''
                             var arrow = ''
                           }
+
                           if (prev_day != day_name){
                               $('.news-table > tbody').append(`
                               <tr><td style="height: 100px; text-align: center; --bs-table-striped-bg:#fff;" colspan="7"><h5>${date} ${day_name}</h5></td></tr>

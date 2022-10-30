@@ -68,22 +68,24 @@
   <script src="{{ ASSETS_ROOT }}/js/dashboard.js"></script>
   <script src="{{ ASSETS_ROOT }}/js/Chart.roundedBarCharts.js"></script>
   <script src="{{ ASSETS_ROOT }}/js/jquery.datetimepicker.full.min.js"></script>>
-
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
   <script type="text/javascript">
-    function get_chart(){
+    function get_chart(date=null){
       var url = window.location.href;
       news_id = url.split('/')[4]
       var asset =  $('#dropdownTools').text();
       var horizon =  $('.horizon').text();
+
       if (horizon == '1s'){
           horizon = 'S1'
         } else {
           horizon = 'M1'
         }
       
-      date = $('#datetimepicker').val()
+      date = date
       $.ajax({
         data: {
             'get_chart': asset,
@@ -96,6 +98,7 @@
         
         success: function (response) {
           var chart_data = jQuery.parseJSON(response.ticks);
+          console.log(chart_data)
           ohlc =[]
           $.each(chart_data['index'], function(i, str) {
             ohlc.push({x: new Date(str),
@@ -132,8 +135,11 @@
     }
 
 
-      var asset =  $('#dropdownTools').text();
-      get_chart()
+      var asset = $('#dropdownTools').text();
+      let date = new Date
+      let new_date = new Date(date.setDate(date.getDate() - 1))
+      get_chart(date=moment(new_date).format('D.MM.YYYY HH:MM'))
+
 
         var options = {
                   series: [{
@@ -389,6 +395,19 @@
                   text: 'EURUSD',
                   align: 'center',
                 },
+
+                plotOptions: {
+                  candlestick: {
+                    colors: {
+                      upward: '#1F3BB3',
+                      downward: '#EF403C'
+                    },
+                    wick: {
+                      useFillColor: true
+                    }
+                  }
+              },
+
                 xaxis: {
                   type: 'datetime',
                   labels: {
@@ -417,7 +436,8 @@
         format:'d.m.Y H:i',
         lang:'ru',
         onChangeDateTime:function(dp,$input){
-        get_chart()
+          date = $('#datetimepicker').val()        
+          get_chart(date)
         }
       });
     });
@@ -479,7 +499,6 @@
 
     $(document).ready(function () {
       $('.change-horizon').click(function () {
-
         $('.change-horizon').attr('class', 'btn btn-outline-primary btn-fw change-horizon');
         $(this).attr('class', 'btn btn-primary change-horizon horizon')
         get_chart()
